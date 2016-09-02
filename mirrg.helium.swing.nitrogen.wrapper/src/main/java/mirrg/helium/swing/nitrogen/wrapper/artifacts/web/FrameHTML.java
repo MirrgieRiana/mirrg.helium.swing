@@ -14,11 +14,11 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import mirrg.helium.standard.hydrogen.struct.Tuple;
+import mirrg.helium.swing.nitrogen.util.GroupBuilder;
+import mirrg.helium.swing.nitrogen.util.HSwing;
 import mirrg.helium.swing.nitrogen.wrapper.FrameNitrogen;
 import mirrg.helium.swing.nitrogen.wrapper.artifacts.logging.EnumTypeLog;
 import mirrg.helium.swing.nitrogen.wrapper.artifacts.logging.HLog;
-import mirrg.helium.swing.nitrogen.wrapper.util.GroupBuilder;
-import mirrg.helium.swing.nitrogen.wrapper.util.HSwing;
 
 public class FrameHTML extends FrameNitrogen
 {
