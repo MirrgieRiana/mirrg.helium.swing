@@ -19,16 +19,16 @@ AWT・Swing関連の単純な物をまとめたプロジェクト。
 ### 機能
 
 - GroupBuilder
-  - 階層的構造を持つGroupLayoutが簡単に組めるユーティリティ。
+  - 階層的構造を持つGroupLayoutが簡単に組めるユーティリティ
 - HSwing
-  - LookAndFeel関連メソッド。
-  - インラインでSliptPaneなどの構造物を作れる関数。
-  - インラインでプロパティを設定できる関数。
-  - インラインでイベントの一つのメソッドを設定できる関数。
+  - LookAndFeel関連メソッド
+  - インラインでSliptPaneなどの構造物を作れる関数
+  - インラインでプロパティを設定できる関数
+  - インラインでイベントの一つのメソッドを設定できる関数
 - NamedSlot
-  - JList用にtoStringを偽装できるクラス。
+  - JList用にtoStringを偽装できるクラス
 - TitledGroup
-  - タイトル付き枠を表すコンポーネント。
+  - タイトル付き枠を表すコンポーネント
 
 ## mirrg.helium.swing.nitrogen.wrapper
 
@@ -39,11 +39,16 @@ AWT・Swing関連の単純な物をまとめたプロジェクト。
 ### エントリーポイント
 
 - `mirrg.helium.swing.nitrogen.wrapper.FrameNitrogen`
+- `mirrg.helium.swing.nitrogen.wrapper.artifacts.*`
 
 ### 機能
 
-- 機能の説明。
-  - 機能の説明。
+- FrameNitrogen
+  - ウィンドウの生成・破棄・表示・非表示のイベントを抽出して提供する。
+- artifacts
+  - ログを表示するウィンドウ
+  - HTMLを表示できるウィンドウ
+  - LookAndFeelを変更できるメニュー
 
 ## mirrg.helium.swing.nitrogen.applet
 
