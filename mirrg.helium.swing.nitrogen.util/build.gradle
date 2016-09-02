@@ -14,7 +14,7 @@ project.archivesBaseName = 'mirrg.helium.swing.nitrogen.util'
 
 // ★成果物のバージョン
 def superversion = '0' // 破壊的なバージョン変更
-def subversion = '0.1' // 破壊的でないバージョン変更
+def subversion = '0.2' // 破壊的でないバージョン変更
 
 // ★依存関係
 dependencies {
@@ -26,6 +26,7 @@ dependencies {
 	//compile group: 'mirrg', name: 'mirrg.struct.hydrogen-1.0', version: '+'
 	//compile 'mirrg:mirrg.helium.standard.hydrogen.struct:+'
 	//compile 'mirrg:mirrg.helium.standard.hydrogen.event:+'
+	compile 'mirrg:mirrg.helium.standard.hydrogen.util:+'
 
 }
 
@@ -34,7 +35,7 @@ def mavenRepositories = [
 
 	//'https://raw.githubusercontent.com/MirrgieRiana/mirrg.struct.hydrogen/master/maven',
 	//'http://hg.pf.osdn.jp/view/t/ta/tacticsrealize/mirrg.struct.hydrogen/raw-file/tip/maven',
-	//'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.standard/master/maven',
+	'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.standard/master/maven',
 
 ]
 
