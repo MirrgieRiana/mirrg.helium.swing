@@ -25,6 +25,10 @@ AWT・Swing関連の単純な物をまとめたプロジェクト
   - インラインでSliptPaneなどの構造物を作れる関数
   - インラインでプロパティを設定できる関数
   - インラインでイベントの一つのメソッドを設定できる関数
+- HAWT
+  - 描画と画像に関するメソッド
+- HColor
+  - Colorを生成したり処理したりする関数
 - NamedSlot
   - JList用にtoStringを偽装できるクラス
 - TitledGroup
