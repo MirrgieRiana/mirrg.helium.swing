@@ -1,10 +1,11 @@
-package mirrg.helium.swing.phosphorus.canvas;
+package mirrg.helium.swing.phosphorus.canvas.game1;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 
+import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.GameAbstract;
 
 public class Game1 extends GameAbstract

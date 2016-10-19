@@ -1,5 +1,6 @@
 package mirrg.helium.swing.phosphorus.canvas;
 
+import mirrg.helium.swing.phosphorus.canvas.game1.Game1;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.GameAbstract;
 import mirrg.helium.swing.phosphorus.canvas.util.IntervalThread;
