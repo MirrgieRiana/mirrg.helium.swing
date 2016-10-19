@@ -18,7 +18,7 @@ public class SampleGame1
 			game.render(frame.canvas.graphics);
 			frame.canvas.repaint();
 		}).start();
-		new IntervalThread(60, () -> game.move()).start();
+		new IntervalThread(60, game::move).start();
 	}
 
 }
