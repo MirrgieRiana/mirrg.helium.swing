@@ -5,7 +5,7 @@ import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.GameAbstract;
 import mirrg.helium.swing.phosphorus.canvas.util.IntervalThread;
 
-public class SamplePhosphorusCanvas
+public class SampleGame1
 {
 
 	public static void main(String[] args)
