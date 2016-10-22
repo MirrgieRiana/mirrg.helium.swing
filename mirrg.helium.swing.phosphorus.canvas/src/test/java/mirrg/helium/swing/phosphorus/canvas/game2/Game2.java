@@ -15,6 +15,7 @@ public class Game2 extends PhosphorusGame<Game2>
 	public final Layer layerOverlay;
 
 	public DataEntityTile[][] tiles = new DataEntityTile[10][10];
+	public String xml;
 
 	public Game2(PhosphorusCanvas canvas, Data<Game2> data)
 	{

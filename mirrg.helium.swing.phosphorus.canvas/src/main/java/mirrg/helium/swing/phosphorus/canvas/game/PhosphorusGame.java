@@ -37,6 +37,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	{
 		this.data.dispose(getThis());
 		this.data = data;
+		data.entities.forEach(e -> e.touch(getThis()));
 	}
 
 	public View getView()
@@ -52,6 +53,14 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	public void addEntity(DataEntity<SELF> entity)
 	{
 		data.entities.add(entity);
+		entity.touch(getThis());
+	}
+
+	private ArrayList<Runnable> doLater = new ArrayList<>();
+
+	public void doLater(Runnable runnable)
+	{
+		doLater.add(runnable);
 	}
 
 	@Override
@@ -59,6 +68,12 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	{
 		data.entities.stream()
 			.forEach(e -> e.getEntity(getThis()).move());
+
+		{
+			ArrayList<Runnable> doLater2 = doLater;
+			doLater = new ArrayList<>();
+			doLater2.forEach(Runnable::run);
+		}
 	}
 
 	@Override

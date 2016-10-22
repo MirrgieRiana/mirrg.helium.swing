@@ -20,8 +20,7 @@ public class DataEntityGame2 extends DataEntity<Game2>
 	public class EntityTileGame2 extends Entity
 	{
 
-		private String xml;
-
+		@SuppressWarnings("unchecked")
 		public EntityTileGame2(Game2 game)
 		{
 			super(game);
@@ -29,11 +28,13 @@ public class DataEntityGame2 extends DataEntity<Game2>
 				if (isDisposed) return false;
 
 				if (e.event.getKeyCode() == KeyEvent.VK_F3) {
-					xml = getXStream().toXML(game.getData());
-					System.out.println(xml);
+					game.xml = getXStream().toXML(game.getData());
+					System.out.println(game.xml);
 				} else if (e.event.getKeyCode() == KeyEvent.VK_F4) {
-					if (xml != null) {
-						game.setData((Data<Game2>) getXStream().fromXML(xml));
+					if (game.xml != null) {
+						game.doLater(() -> {
+							game.setData((Data<Game2>) getXStream().fromXML(game.xml));
+						});
 					}
 				}
 

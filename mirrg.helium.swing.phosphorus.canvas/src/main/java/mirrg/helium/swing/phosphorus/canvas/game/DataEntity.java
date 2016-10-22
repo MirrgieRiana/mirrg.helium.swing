@@ -21,6 +21,11 @@ public class DataEntity<G extends PhosphorusGame<?>>
 		return new Entity(game);
 	}
 
+	public void touch(G game)
+	{
+		if (entity == null) entity = createEntity(game);
+	}
+
 	public class Entity
 	{
 
