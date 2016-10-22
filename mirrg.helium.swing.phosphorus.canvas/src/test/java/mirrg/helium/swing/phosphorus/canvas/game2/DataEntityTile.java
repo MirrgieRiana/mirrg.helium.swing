@@ -24,7 +24,7 @@ public class DataEntityTile extends DataEntity<Game2>
 	}
 
 	@Override
-	public Entity createEntity(Game2 game)
+	protected Entity createEntity(Game2 game)
 	{
 		return new EntityTile(game);
 	}

@@ -12,7 +12,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	public final PhosphorusCanvas canvas;
 	private ArrayList<Layer> layers = new ArrayList<>();
-	public Data<SELF> data;
+	private Data<SELF> data;
 
 	public final Layer layerBack;
 
@@ -28,9 +28,20 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	}
 
+	public Data<SELF> getData()
+	{
+		return data;
+	}
+
+	public synchronized void setData(Data<SELF> data)
+	{
+		this.data.dispose(getThis());
+		this.data = data;
+	}
+
 	public View getView()
 	{
-		return getData().view.createView(this);
+		return data.view.getView(this);
 	}
 
 	public void addLayer(Layer layer)
@@ -44,20 +55,20 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	}
 
 	@Override
-	public void move()
+	public synchronized void move()
 	{
 		data.entities.stream()
-			.forEach(e -> e.createEntity(getThis()).move());
+			.forEach(e -> e.getEntity(getThis()).move());
 	}
 
 	@Override
-	public void render(Graphics2D g)
+	public synchronized void render(Graphics2D g)
 	{
 		layers.forEach(l -> {
 			l.paint(g, () -> {
 				data.entities.stream()
-					.sorted((a, b) -> (int) Math.signum(a.createEntity(getThis()).getZOrder() - b.createEntity(getThis()).getZOrder()))
-					.forEach(e -> e.createEntity(getThis()).render(l));
+					.sorted((a, b) -> (int) Math.signum(a.getEntity(getThis()).getZOrder() - b.getEntity(getThis()).getZOrder()))
+					.forEach(e -> e.getEntity(getThis()).render(l));
 			});
 		});
 	}
@@ -67,24 +78,9 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		layers.forEach(l -> l.dirty());
 	}
 
-	public Data<SELF> getData()
-	{
-		return data;
-	}
-
-	public void setData(Data<SELF> data)
-	{
-		this.data = data;
-	}
-
 	public Layer createLayer()
 	{
 		return new Layer(canvas.createImageLayer(BufferedImage.TYPE_INT_ARGB));
-	}
-
-	public PhosphorusCanvas getCanvas()
-	{
-		return canvas;
 	}
 
 	@SuppressWarnings("unchecked")

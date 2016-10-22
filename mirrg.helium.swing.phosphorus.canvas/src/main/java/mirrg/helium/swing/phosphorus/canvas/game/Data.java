@@ -8,4 +8,9 @@ public class Data<G extends PhosphorusGame<?>>
 	public ArrayList<DataEntity<? super G>> entities = new ArrayList<>();
 	public DataView view = new DataView();
 
+	public void dispose(G game)
+	{
+		entities.forEach(e -> e.getEntity(game).dispose());
+	}
+
 }

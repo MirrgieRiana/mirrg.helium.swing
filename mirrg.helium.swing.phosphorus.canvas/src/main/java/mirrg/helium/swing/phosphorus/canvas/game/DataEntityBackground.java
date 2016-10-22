@@ -8,7 +8,7 @@ public class DataEntityBackground extends DataEntity<PhosphorusGame<?>>
 {
 
 	@Override
-	public Entity createEntity(PhosphorusGame<?> game)
+	protected Entity createEntity(PhosphorusGame<?> game)
 	{
 		return new EntityBackground(game);
 	}
@@ -35,7 +35,7 @@ public class DataEntityBackground extends DataEntity<PhosphorusGame<?>>
 			Graphics2D graphics = layer.getImageLayer().getGraphics();
 			if (layer == game.layerBack) {
 				graphics.setBackground(Color.white);
-				graphics.clearRect(0, 0, game.getCanvas().getWidth(), game.getCanvas().getHeight());
+				graphics.clearRect(0, 0, game.canvas.getWidth(), game.canvas.getHeight());
 			}
 		}
 

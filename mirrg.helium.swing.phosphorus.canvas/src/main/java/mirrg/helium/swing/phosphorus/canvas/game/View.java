@@ -59,12 +59,12 @@ public class View
 
 	public double getScreenWidth()
 	{
-		return game.getCanvas().getWidth();
+		return game.canvas.getWidth();
 	}
 
 	public double getScreenHeight()
 	{
-		return game.getCanvas().getHeight();
+		return game.canvas.getHeight();
 	}
 
 	public double getCoordinateWidth()

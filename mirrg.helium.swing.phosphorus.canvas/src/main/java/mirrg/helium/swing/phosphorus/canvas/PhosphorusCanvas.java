@@ -132,6 +132,8 @@ public class PhosphorusCanvas extends JPanel
 			}
 
 		});
+
+		setFocusable(true);
 	}
 
 	public ImageLayer createImageLayer(int type)

@@ -2,10 +2,21 @@ package mirrg.helium.swing.phosphorus.canvas.game;
 
 import java.util.Optional;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 public class DataEntity<G extends PhosphorusGame<?>>
 {
 
-	public Entity createEntity(G game)
+	@XStreamOmitField
+	private Entity entity;
+
+	public synchronized Entity getEntity(G game)
+	{
+		if (entity == null) entity = createEntity(game);
+		return entity;
+	}
+
+	protected Entity createEntity(G game)
 	{
 		return new Entity(game);
 	}
@@ -14,6 +25,7 @@ public class DataEntity<G extends PhosphorusGame<?>>
 	{
 
 		protected final G game;
+		protected boolean isDisposed = false;
 
 		public Entity(G game)
 		{
@@ -23,6 +35,11 @@ public class DataEntity<G extends PhosphorusGame<?>>
 		public void move()
 		{
 
+		}
+
+		public void dispose()
+		{
+			isDisposed = true;
 		}
 
 		public double getZOrder()

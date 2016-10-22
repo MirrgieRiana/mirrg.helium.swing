@@ -32,6 +32,8 @@ public class Game2 extends PhosphorusGame<Game2>
 			}
 		}
 
+		addEntity(new DataEntityGame2());
+
 	}
 
 	@Override

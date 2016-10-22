@@ -28,6 +28,8 @@ dependencies {
 	compile 'mirrg:mirrg.helium.standard.hydrogen.event:+'
 	compile 'mirrg:mirrg.helium.standard.hydrogen.util:+'
 
+	compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
+
 }
 
 // ★追加のリポジトリURL
