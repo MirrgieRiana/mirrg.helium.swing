@@ -6,16 +6,17 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.util.GameAbstract;
+import mirrg.helium.swing.phosphorus.canvas.game.IGame;
 
-public class Game1 extends GameAbstract
+public class Game1 implements IGame
 {
 
+	private PhosphorusCanvas canvas;
 	private ArrayList<Planet> planets = new ArrayList<>();
 
 	public Game1(PhosphorusCanvas canvas, int count)
 	{
-		super(canvas);
+		this.canvas = canvas;
 
 		for (int i = 0; i < count; i++) {
 			planets.add(new Planet());

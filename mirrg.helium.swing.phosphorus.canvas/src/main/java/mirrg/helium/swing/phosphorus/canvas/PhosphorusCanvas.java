@@ -4,63 +4,155 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import mirrg.helium.standard.hydrogen.event.EventManager;
+
 public class PhosphorusCanvas extends JPanel
 {
 
-	public BufferedImage image;
-	public Graphics2D graphics;
+	private ImageLayer layer;
+	private EventManager<EventPhosphorusCanvas<?>> eventManager = new EventManager<>();
 
 	public PhosphorusCanvas()
 	{
-		reset(1, 1);
-		addComponentListener(new ComponentListener() {
+		layer = createImageLayer(BufferedImage.TYPE_INT_RGB);
 
-			@Override
-			public void componentShown(ComponentEvent e)
-			{
-				reset(getWidth(), getHeight());
-			}
+		addComponentListener(new ComponentListener() {
 
 			@Override
 			public void componentResized(ComponentEvent e)
 			{
-				reset(getWidth(), getHeight());
+				eventManager.post(new EventPhosphorusCanvas.EventComponent.Resized(e));
 			}
 
 			@Override
 			public void componentMoved(ComponentEvent e)
 			{
+				eventManager.post(new EventPhosphorusCanvas.EventComponent.Moved(e));
+			}
 
+			@Override
+			public void componentShown(ComponentEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventComponent.Shown(e));
 			}
 
 			@Override
 			public void componentHidden(ComponentEvent e)
 			{
+				eventManager.post(new EventPhosphorusCanvas.EventComponent.Hidden(e));
+			}
 
+		});
+		addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouse.Clicked(e));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouse.Pressed(e));
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouse.Released(e));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouse.Entered(e));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouse.Exited(e));
+			}
+
+		});
+		addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouseMotion.Dragged(e));
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventMouseMotion.Moved(e));
+			}
+
+		});
+		addMouseWheelListener(new MouseWheelListener() {
+
+			@Override
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventWheel.Moved(e));
+			}
+
+		});
+		addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventKey.Pressed(e));
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventKey.Released(e));
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+				eventManager.post(new EventPhosphorusCanvas.EventKey.Typed(e));
 			}
 
 		});
 	}
 
-	public void reset(int width, int height)
+	public ImageLayer createImageLayer(int type)
 	{
-		BufferedImage image2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		Graphics2D graphics2 = image2.createGraphics();
-
-		graphics2.drawImage(image, 0, 0, null);
-
-		image = image2;
-		graphics = graphics2;
+		return new ImageLayer(this, type, Math.max(getWidth(), 1), Math.max(getHeight(), 1));
 	}
 
 	@Override
 	public void paint(Graphics g)
 	{
-		g.drawImage(image, 0, 0, null);
+		layer.paint((Graphics2D) g);
+	}
+
+	public ImageLayer getLayer()
+	{
+		return layer;
+	}
+
+	public EventManager<EventPhosphorusCanvas<?>> event()
+	{
+		return eventManager;
 	}
 
 }

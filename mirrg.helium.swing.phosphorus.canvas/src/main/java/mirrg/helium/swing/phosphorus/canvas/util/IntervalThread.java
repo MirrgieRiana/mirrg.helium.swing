@@ -3,10 +3,10 @@ package mirrg.helium.swing.phosphorus.canvas.util;
 public class IntervalThread extends Thread
 {
 
-	public int fps;
+	public double fps;
 	private Runnable listener;
 
-	public IntervalThread(int fps, Runnable listener)
+	public IntervalThread(double fps, Runnable listener)
 	{
 		this.fps = fps;
 		this.listener = listener;
@@ -17,7 +17,10 @@ public class IntervalThread extends Thread
 	{
 		while (true) {
 			try {
-				Thread.sleep(1000 / fps);
+				double time = 1000.0 / fps;
+				int ms = (int) time;
+				int ns = (int) ((time - ms) * 1000);
+				Thread.sleep(ms, ns);
 			} catch (InterruptedException e) {
 				break;
 			}
