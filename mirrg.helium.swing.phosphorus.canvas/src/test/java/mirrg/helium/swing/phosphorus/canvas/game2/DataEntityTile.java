@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
 import mirrg.helium.swing.phosphorus.canvas.game.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.Point;
 import mirrg.helium.swing.phosphorus.canvas.game.Rectangle;
@@ -24,23 +25,17 @@ public class DataEntityTile extends DataEntity<Game2>
 	}
 
 	@Override
-	protected Entity createEntity(Game2 game)
+	protected Entity<Game2> createEntity(Game2 game)
 	{
 		return new EntityTile(game);
 	}
 
-	public class EntityTile extends Entity
+	public class EntityTile extends Entity<Game2>
 	{
 
 		public EntityTile(Game2 game)
 		{
 			super(game);
-		}
-
-		public void render(Graphics2D g)
-		{
-			g.setColor(Color.black);
-			g.fillRect(x * 32, y * 32, 30, 30);
 		}
 
 		@Override
@@ -71,6 +66,7 @@ public class DataEntityTile extends DataEntity<Game2>
 
 			} else if (layer == game.layerMain) {
 				graphics.setColor(Color.white);
+				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getZoom())));
 
 				Point point = game.getView().getScreenRectangle(getOpticalBounds(layer).get()).getCenter();
 				String string = "" + (int) (i * 99);

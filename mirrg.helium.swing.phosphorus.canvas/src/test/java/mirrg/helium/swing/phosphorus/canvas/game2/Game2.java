@@ -14,8 +14,8 @@ public class Game2 extends PhosphorusGame<Game2>
 	public final Layer layerMain;
 	public final Layer layerOverlay;
 
-	public DataEntityTile[][] tiles = new DataEntityTile[10][10];
 	public String xml;
+	public DataEntityGame2 dataEntityGame2;
 
 	public Game2(PhosphorusCanvas canvas, Data<Game2> data)
 	{
@@ -24,16 +24,19 @@ public class Game2 extends PhosphorusGame<Game2>
 		addLayer(layerMain = createLayer());
 		addLayer(layerOverlay = createLayer());
 
-		for (int y = 0; y < tiles.length; y++) {
-			for (int x = 0; x < tiles[y].length; x++) {
+		addTool(new ToolGame2(this));
+
+		DataEntityGame2 dataEntityGame2 = new DataEntityGame2();
+		addEntity(dataEntityGame2);
+
+		for (int y = 0; y < dataEntityGame2.tiles.length; y++) {
+			for (int x = 0; x < dataEntityGame2.tiles[y].length; x++) {
 				DataEntityTile tile = new DataEntityTile(x, y);
 
-				tiles[y][x] = tile;
+				dataEntityGame2.tiles[y][x] = tile;
 				addEntity(tile);
 			}
 		}
-
-		addEntity(new DataEntityGame2());
 
 	}
 

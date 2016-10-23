@@ -3,6 +3,7 @@ package mirrg.helium.swing.phosphorus.canvas.game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
@@ -12,9 +13,11 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	public final PhosphorusCanvas canvas;
 	private ArrayList<Layer> layers = new ArrayList<>();
+	private ArrayList<Tool<? super SELF>> tools = new ArrayList<>();
 	private Data<SELF> data;
 
 	public final Layer layerBack;
+	public final ToolBackground toolBackground;
 
 	public PhosphorusGame(PhosphorusCanvas canvas, Data<SELF> data)
 	{
@@ -24,7 +27,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		canvas.event().register(EventPhosphorusCanvas.EventComponent.Resized.class, e -> layers.forEach(Layer::dirty));
 
 		addLayer(layerBack = createLayer());
-		data.entities.add(new DataEntityBackground());
+		addTool(toolBackground = new ToolBackground(this));
 
 	}
 
@@ -50,7 +53,12 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		layers.add(layer);
 	}
 
-	public void addEntity(DataEntity<SELF> entity)
+	public void addTool(Tool<? super SELF> tool)
+	{
+		tools.add(tool);
+	}
+
+	public void addEntity(DataEntity<? super SELF> entity)
 	{
 		data.entities.add(entity);
 		entity.touch(getThis());
@@ -68,6 +76,8 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	{
 		data.entities.stream()
 			.forEach(e -> e.getEntity(getThis()).move());
+		tools.stream()
+			.forEach(e -> e.move());
 
 		{
 			ArrayList<Runnable> doLater2 = doLater;
@@ -81,9 +91,12 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	{
 		layers.forEach(l -> {
 			l.paint(g, () -> {
-				data.entities.stream()
-					.sorted((a, b) -> (int) Math.signum(a.getEntity(getThis()).getZOrder() - b.getEntity(getThis()).getZOrder()))
-					.forEach(e -> e.getEntity(getThis()).render(l));
+				Stream.concat(
+					data.entities.stream()
+						.map(e -> e.getEntity(getThis())),
+					tools.stream())
+					.sorted((a, b) -> (int) Math.signum(a.getZOrder() - b.getZOrder()))
+					.forEach(e -> e.render(l));
 			});
 		});
 	}

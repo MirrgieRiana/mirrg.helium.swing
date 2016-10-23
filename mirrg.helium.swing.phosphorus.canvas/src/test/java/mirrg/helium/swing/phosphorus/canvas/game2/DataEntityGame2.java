@@ -1,52 +1,27 @@
 package mirrg.helium.swing.phosphorus.canvas.game2;
 
-import java.awt.event.KeyEvent;
-
-import com.thoughtworks.xstream.XStream;
-
-import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.game.Data;
 import mirrg.helium.swing.phosphorus.canvas.game.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.Entity;
 
 public class DataEntityGame2 extends DataEntity<Game2>
 {
 
+	public DataEntityTile[][] tiles = new DataEntityTile[10][10];
+
 	@Override
-	protected Entity createEntity(Game2 game)
+	protected Entity<Game2> createEntity(Game2 game)
 	{
-		return new EntityTileGame2(game);
+		return new EntityGame2(game);
 	}
 
-	public class EntityTileGame2 extends Entity
+	public class EntityGame2 extends Entity<Game2>
 	{
 
-		@SuppressWarnings("unchecked")
-		public EntityTileGame2(Game2 game)
+		public EntityGame2(Game2 game)
 		{
 			super(game);
-			game.canvas.event().registerRemovable(EventPhosphorusCanvas.EventKey.Released.class, e -> {
-				if (isDisposed) return false;
 
-				if (e.event.getKeyCode() == KeyEvent.VK_F3) {
-					game.xml = getXStream().toXML(game.getData());
-					System.out.println(game.xml);
-				} else if (e.event.getKeyCode() == KeyEvent.VK_F4) {
-					if (game.xml != null) {
-						game.doLater(() -> {
-							game.setData((Data<Game2>) getXStream().fromXML(game.xml));
-						});
-					}
-				}
-
-				return true;
-			});
-		}
-
-		private XStream getXStream()
-		{
-			XStream xStream = new XStream();
-			xStream.autodetectAnnotations(true);
-			return xStream;
+			game.dataEntityGame2 = DataEntityGame2.this;
 		}
 
 	}
