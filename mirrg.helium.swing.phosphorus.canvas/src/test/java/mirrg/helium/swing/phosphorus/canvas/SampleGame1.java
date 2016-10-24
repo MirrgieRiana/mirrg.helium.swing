@@ -21,14 +21,14 @@ public class SampleGame1
 		double fpsRender, double fpsMove)
 	{
 		FrameCanvas frame = new FrameCanvas(width, height);
-		IGame iGame = supplierGame.apply(frame.canvas);
+		IGame game = supplierGame.apply(frame.canvas);
 		frame.setVisible(true);
 
 		new IntervalThread(fpsRender, () -> {
-			iGame.render(frame.canvas.getLayer().getGraphics());
+			game.render(frame.canvas.getLayer().getGraphics());
 			frame.canvas.repaint();
 		}).start();
-		new IntervalThread(fpsMove, iGame::move).start();
+		new IntervalThread(fpsMove, game::move).start();
 	}
 
 }

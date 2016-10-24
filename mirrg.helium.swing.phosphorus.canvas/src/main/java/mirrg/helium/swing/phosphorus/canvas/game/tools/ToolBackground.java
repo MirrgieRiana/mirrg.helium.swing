@@ -1,8 +1,13 @@
-package mirrg.helium.swing.phosphorus.canvas.game;
+package mirrg.helium.swing.phosphorus.canvas.game.tools;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Optional;
+
+import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
+import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
+import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
 public class ToolBackground extends Tool<PhosphorusGame<?>>
 {
@@ -33,7 +38,7 @@ public class ToolBackground extends Tool<PhosphorusGame<?>>
 	}
 
 	@Override
-	public Optional<Rectangle> getOpticalBounds(Layer layer)
+	public Optional<RectangleCoordinate> getOpticalBounds(Layer layer)
 	{
 		if (layer == game.layerBack) return Optional.of(game.getView().getRegion());
 		return super.getOpticalBounds(layer);

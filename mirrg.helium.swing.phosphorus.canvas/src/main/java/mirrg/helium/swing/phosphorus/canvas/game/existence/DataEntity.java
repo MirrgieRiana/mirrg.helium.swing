@@ -1,6 +1,8 @@
-package mirrg.helium.swing.phosphorus.canvas.game;
+package mirrg.helium.swing.phosphorus.canvas.game.existence;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 
 public class DataEntity<G extends PhosphorusGame<?>>
 {

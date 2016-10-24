@@ -5,16 +5,18 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+import mirrg.helium.standard.hydrogen.event.EventManager;
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
+import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
+import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolBackground;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IViewContext;
+import mirrg.helium.swing.phosphorus.canvas.game.view.View;
 
 public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 {
-
-	public final PhosphorusCanvas canvas;
-	private ArrayList<Layer> layers = new ArrayList<>();
-	private ArrayList<Tool<? super SELF>> tools = new ArrayList<>();
-	private Data<SELF> data;
 
 	public final Layer layerBack;
 	public final ToolBackground toolBackground;
@@ -31,7 +33,24 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	}
 
-	public Data<SELF> getData()
+	//
+
+	private EventManager<EventPhosphorusGame> eventManager = new EventManager<>();
+
+	public EventManager<EventPhosphorusGame> event()
+	{
+		return eventManager;
+	}
+
+	//
+
+	public final PhosphorusCanvas canvas;
+
+	//
+
+	private Data<SELF> data;
+
+	public Object getData()
 	{
 		return data;
 	}
@@ -43,32 +62,34 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		data.entities.forEach(e -> e.touch(getThis()));
 	}
 
-	public View getView()
+	@SuppressWarnings("unchecked")
+	private SELF getThis()
 	{
-		return data.view.getView(this);
+		return (SELF) this;
 	}
 
-	public void addLayer(Layer layer)
-	{
-		layers.add(layer);
-	}
+	//
+
+	private ArrayList<Tool<? super SELF>> tools = new ArrayList<>();
 
 	public void addTool(Tool<? super SELF> tool)
 	{
 		tools.add(tool);
 	}
 
+	public Stream<DataEntity<? super SELF>> getEntities()
+	{
+		return data.entities.stream();
+	}
+
 	public void addEntity(DataEntity<? super SELF> entity)
 	{
 		data.entities.add(entity);
 		entity.touch(getThis());
-	}
 
-	private ArrayList<Runnable> doLater = new ArrayList<>();
-
-	public void doLater(Runnable runnable)
-	{
-		doLater.add(runnable);
+		layers.forEach(l -> {
+			if (entity.getEntity(getThis()).getOpticalBounds(l).isPresent()) l.dirty();
+		});
 	}
 
 	@Override
@@ -79,11 +100,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		tools.stream()
 			.forEach(e -> e.move());
 
-		{
-			ArrayList<Runnable> doLater2 = doLater;
-			doLater = new ArrayList<>();
-			doLater2.forEach(Runnable::run);
-		}
+		eventManager.post(new EventPhosphorusGame.Move.Post());
 	}
 
 	@Override
@@ -101,20 +118,48 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		});
 	}
 
-	public void onViewChange()
+	//
+
+	private ArrayList<Layer> layers = new ArrayList<>();
+
+	protected void addLayer(Layer layer)
 	{
-		layers.forEach(l -> l.dirty());
+		layers.add(layer);
 	}
 
-	public Layer createLayer()
+	protected Layer createLayer()
 	{
 		return new Layer(canvas.createImageLayer(BufferedImage.TYPE_INT_ARGB));
 	}
 
-	@SuppressWarnings("unchecked")
-	public SELF getThis()
+	//
+
+	private View view;
+
+	public View getView()
 	{
-		return (SELF) this;
+		if (view == null) view = data.view.getView(new IViewContext() {
+
+			@Override
+			public void onViewChange()
+			{
+				layers.forEach(l -> l.dirty());
+			}
+
+			@Override
+			public double getWidth()
+			{
+				return canvas.getWidth();
+			}
+
+			@Override
+			public double getHeight()
+			{
+				return canvas.getHeight();
+			}
+
+		});
+		return view;
 	}
 
 }

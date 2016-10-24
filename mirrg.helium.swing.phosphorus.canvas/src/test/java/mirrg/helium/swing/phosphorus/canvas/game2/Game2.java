@@ -5,8 +5,8 @@ import java.awt.RenderingHints;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.Data;
-import mirrg.helium.swing.phosphorus.canvas.game.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
+import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 
 public class Game2 extends PhosphorusGame<Game2>
 {

@@ -1,56 +1,58 @@
-package mirrg.helium.swing.phosphorus.canvas.game;
+package mirrg.helium.swing.phosphorus.canvas.game.view;
+
+import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
+import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
+import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
 
 public class View
 {
 
-	private final PhosphorusGame<?> game;
+	private final DataView data;
+	private final IViewContext viewContext;
 
-	public View(PhosphorusGame<?> game)
+	public View(DataView data, IViewContext viewContext)
 	{
-		this.game = game;
-	}
-
-	private DataView getViewData()
-	{
-		return game.getData().view;
+		this.data = data;
+		this.viewContext = viewContext;
 	}
 
 	public double getX()
 	{
-		return getViewData().x;
+		return data.x;
 	}
 
 	public void setX(double x)
 	{
-		game.onViewChange();
-		getViewData().x = x;
+		viewContext.onViewChange();
+		data.x = x;
 	}
 
 	public double getY()
 	{
-		return getViewData().y;
+		return data.y;
 	}
 
 	public void setY(double y)
 	{
-		game.onViewChange();
-		getViewData().y = y;
+		viewContext.onViewChange();
+		data.y = y;
 	}
 
 	public double getZoom()
 	{
-		return getViewData().zoom;
+		return data.zoom;
 	}
 
 	public void setZoom(double zoom)
 	{
-		game.onViewChange();
-		getViewData().zoom = zoom;
+		viewContext.onViewChange();
+		data.zoom = zoom;
 	}
 
-	public Rectangle getRegion()
+	public RectangleCoordinate getRegion()
 	{
-		return new Rectangle(
+		return new RectangleCoordinate(
 			getCoordinateX(0),
 			getCoordinateY(0),
 			getCoordinateWidth(),
@@ -59,12 +61,12 @@ public class View
 
 	public double getScreenWidth()
 	{
-		return game.canvas.getWidth();
+		return viewContext.getWidth();
 	}
 
 	public double getScreenHeight()
 	{
-		return game.canvas.getHeight();
+		return viewContext.getHeight();
 	}
 
 	public double getCoordinateWidth()
@@ -129,22 +131,36 @@ public class View
 		return screenY;
 	}
 
-	public Rectangle getCoordinateRectangle(Rectangle rectangle)
+	public RectangleCoordinate convert(RectangleScreen rectangle)
 	{
-		return new Rectangle(
+		return new RectangleCoordinate(
 			getCoordinateX(rectangle.x),
 			getCoordinateY(rectangle.y),
 			rectangle.width * getZoom(),
 			rectangle.height * getZoom());
 	}
 
-	public Rectangle getScreenRectangle(Rectangle rectangle)
+	public RectangleScreen convert(RectangleCoordinate rectangle)
 	{
-		return new Rectangle(
+		return new RectangleScreen(
 			getScreenX(rectangle.x),
 			getScreenY(rectangle.y),
 			rectangle.width / getZoom(),
 			rectangle.height / getZoom());
+	}
+
+	public PointCoordinate convert(PointScreen point)
+	{
+		return new PointCoordinate(
+			getCoordinateX(point.x),
+			getCoordinateY(point.y));
+	}
+
+	public PointScreen convert(PointCoordinate point)
+	{
+		return new PointScreen(
+			getScreenX(point.x),
+			getScreenY(point.y));
 	}
 
 }

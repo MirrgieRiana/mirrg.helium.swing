@@ -1,7 +1,7 @@
 package mirrg.helium.swing.phosphorus.canvas.game2;
 
-import mirrg.helium.swing.phosphorus.canvas.game.DataEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.Entity;
 
 public class DataEntityGame2 extends DataEntity<Game2>
 {

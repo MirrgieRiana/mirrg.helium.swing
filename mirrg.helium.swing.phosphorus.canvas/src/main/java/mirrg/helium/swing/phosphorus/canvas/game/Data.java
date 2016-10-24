@@ -2,6 +2,9 @@ package mirrg.helium.swing.phosphorus.canvas.game;
 
 import java.util.ArrayList;
 
+import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.view.DataView;
+
 public class Data<G extends PhosphorusGame<?>>
 {
 

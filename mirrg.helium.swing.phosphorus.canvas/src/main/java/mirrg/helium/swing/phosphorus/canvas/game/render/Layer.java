@@ -1,4 +1,4 @@
-package mirrg.helium.swing.phosphorus.canvas.game;
+package mirrg.helium.swing.phosphorus.canvas.game.render;
 
 import java.awt.Graphics2D;
 

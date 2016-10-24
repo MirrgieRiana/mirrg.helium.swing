@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.DataEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.Entity;
-import mirrg.helium.swing.phosphorus.canvas.game.Layer;
-import mirrg.helium.swing.phosphorus.canvas.game.Point;
-import mirrg.helium.swing.phosphorus.canvas.game.Rectangle;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
+import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
 public class DataEntityTile extends DataEntity<Game2>
 {
@@ -62,13 +62,13 @@ public class DataEntityTile extends DataEntity<Game2>
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
-				graphics.fill(game.getView().getScreenRectangle(getOpticalBounds(layer).get()).toShape());
+				graphics.fill(game.getView().convert(getOpticalBounds(layer).get()).toShape());
 
 			} else if (layer == game.layerMain) {
 				graphics.setColor(Color.white);
 				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getZoom())));
 
-				Point point = game.getView().getScreenRectangle(getOpticalBounds(layer).get()).getCenter();
+				PointScreen point = game.getView().convert(getOpticalBounds(layer).get()).getCenter();
 				String string = "" + (int) (i * 99);
 				Rectangle2D bounds = graphics.getFontMetrics().getStringBounds(string, graphics);
 				graphics.drawString(string,
@@ -79,10 +79,10 @@ public class DataEntityTile extends DataEntity<Game2>
 		}
 
 		@Override
-		public Optional<Rectangle> getOpticalBounds(Layer layer)
+		public Optional<RectangleCoordinate> getOpticalBounds(Layer layer)
 		{
-			if (layer == game.layerBack) return Optional.of(new Rectangle(x * 32, y * 32, 30, 30));
-			if (layer == game.layerMain) return Optional.of(new Rectangle(x * 32, y * 32, 30, 30));
+			if (layer == game.layerBack) return Optional.of(new RectangleCoordinate(x * 32, y * 32, 30, 30));
+			if (layer == game.layerMain) return Optional.of(new RectangleCoordinate(x * 32, y * 32, 30, 30));
 			return super.getOpticalBounds(layer);
 		}
 
