@@ -10,6 +10,7 @@ public class Layer
 	private final ImageLayer imageLayer;
 
 	private boolean isDirty = true;
+	private boolean autoClear = true;
 
 	public Layer(ImageLayer imageLayer)
 	{
@@ -31,12 +32,22 @@ public class Layer
 		isDirty = true;
 	}
 
+	public void setAutoClear(boolean autoClear)
+	{
+		this.autoClear = autoClear;
+	}
+
+	public boolean getAutoClear()
+	{
+		return autoClear;
+	}
+
 	public void paint(Graphics2D g, Runnable onUpdate)
 	{
 		if (isDirty) {
 			isDirty = false;
 
-			imageLayer.clear();
+			if (autoClear) imageLayer.clear();
 
 			onUpdate.run();
 
