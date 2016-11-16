@@ -95,6 +95,8 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	@Override
 	public synchronized void move()
 	{
+		eventManager.post(new EventPhosphorusGame.Move.Pre());
+
 		data.entities.stream()
 			.forEach(e -> e.getEntity(getThis()).move());
 		tools.stream()
@@ -149,6 +151,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 			public void onViewChange()
 			{
 				layers.forEach(l -> l.dirty());
+				eventManager.post(new EventPhosphorusGame.ViewChange());
 			}
 
 			@Override
