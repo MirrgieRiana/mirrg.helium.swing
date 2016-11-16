@@ -21,6 +21,16 @@ public class EventPhosphorusGame
 	public static class ViewChange extends EventPhosphorusGame
 	{
 
+		public static class Pre extends ViewChange
+		{
+
+		}
+
+		public static class Post extends ViewChange
+		{
+
+		}
+
 	}
 
 }
