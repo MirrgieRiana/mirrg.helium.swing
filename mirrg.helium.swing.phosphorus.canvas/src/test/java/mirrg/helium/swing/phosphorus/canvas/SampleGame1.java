@@ -2,6 +2,8 @@ package mirrg.helium.swing.phosphorus.canvas;
 
 import java.util.function.Function;
 
+import javax.swing.WindowConstants;
+
 import mirrg.helium.swing.phosphorus.canvas.game.IGame;
 import mirrg.helium.swing.phosphorus.canvas.game1.Game1;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
@@ -22,6 +24,7 @@ public class SampleGame1
 	{
 		FrameCanvas frame = new FrameCanvas(width, height);
 		IGame game = supplierGame.apply(frame.canvas);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 		new IntervalThread(fpsRender, () -> {

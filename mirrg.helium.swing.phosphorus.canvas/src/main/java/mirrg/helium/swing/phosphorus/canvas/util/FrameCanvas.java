@@ -4,7 +4,6 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 
@@ -23,7 +22,6 @@ public class FrameCanvas extends JFrame
 			add(canvas);
 		}
 
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		pack();
 	}
 
