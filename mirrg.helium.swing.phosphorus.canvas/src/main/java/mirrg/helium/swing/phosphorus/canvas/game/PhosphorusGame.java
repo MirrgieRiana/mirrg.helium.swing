@@ -59,7 +59,11 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	{
 		this.data.dispose(getThis());
 		this.data = data;
+
 		data.entities.forEach(e -> e.touch(getThis()));
+
+		view = null;
+		layers.forEach(l -> l.dirty());
 	}
 
 	@SuppressWarnings("unchecked")
