@@ -43,7 +43,9 @@ public class Game2 extends PhosphorusGame<Game2>
 	@Override
 	public void render(Graphics2D g)
 	{
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		getLayers().forEach(l -> l.getImageLayer().getGraphics().setRenderingHint(
+			RenderingHints.KEY_ANTIALIASING,
+			RenderingHints.VALUE_ANTIALIAS_ON));
 		super.render(g);
 	}
 

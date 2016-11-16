@@ -132,6 +132,11 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		return new Layer(canvas.createImageLayer(BufferedImage.TYPE_INT_ARGB));
 	}
 
+	protected Stream<Layer> getLayers()
+	{
+		return layers.stream();
+	}
+
 	//
 
 	private View view;
