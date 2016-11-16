@@ -62,8 +62,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 		data.entities.forEach(e -> e.touch(getThis()));
 
-		view = null;
-		layers.forEach(l -> l.dirty());
+		onViewChange();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -145,33 +144,37 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	//
 
-	private View view;
+	private IViewContext viewContext = new IViewContext() {
+
+		@Override
+		public void onViewChange()
+		{
+			PhosphorusGame.this.onViewChange();
+		}
+
+		@Override
+		public double getWidth()
+		{
+			return canvas.getWidth();
+		}
+
+		@Override
+		public double getHeight()
+		{
+			return canvas.getHeight();
+		}
+
+	};
 
 	public View getView()
 	{
-		if (view == null) view = data.view.getView(new IViewContext() {
+		return data.view.getView(viewContext);
+	}
 
-			@Override
-			public void onViewChange()
-			{
-				layers.forEach(l -> l.dirty());
-				eventManager.post(new EventPhosphorusGame.ViewChange());
-			}
-
-			@Override
-			public double getWidth()
-			{
-				return canvas.getWidth();
-			}
-
-			@Override
-			public double getHeight()
-			{
-				return canvas.getHeight();
-			}
-
-		});
-		return view;
+	private void onViewChange()
+	{
+		layers.forEach(l -> l.dirty());
+		eventManager.post(new EventPhosphorusGame.ViewChange());
 	}
 
 }
