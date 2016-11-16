@@ -33,7 +33,7 @@ public class ImageLayer
 	{
 		if (this.width >= width && this.height >= height) return;
 
-		eventManager.post(new EventImageLayer.Rebuffered());
+		eventManager.post(new EventImageLayer.Rebuffer.Pre());
 
 		this.width = width;
 		this.height = height;
@@ -45,6 +45,8 @@ public class ImageLayer
 
 		image = image2;
 		graphics = graphics2;
+
+		eventManager.post(new EventImageLayer.Rebuffer.Post());
 	}
 
 	public void clear()
