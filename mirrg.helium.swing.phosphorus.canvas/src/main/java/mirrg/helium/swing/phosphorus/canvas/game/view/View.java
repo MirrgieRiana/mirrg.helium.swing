@@ -24,8 +24,8 @@ public class View
 
 	public void setX(double x)
 	{
-		viewContext.onViewChange();
 		data.x = x;
+		viewContext.onViewChange();
 	}
 
 	public double getY()
@@ -35,8 +35,8 @@ public class View
 
 	public void setY(double y)
 	{
-		viewContext.onViewChange();
 		data.y = y;
+		viewContext.onViewChange();
 	}
 
 	public double getZoom()
@@ -46,8 +46,8 @@ public class View
 
 	public void setZoom(double zoom)
 	{
-		viewContext.onViewChange();
 		data.zoom = zoom;
+		viewContext.onViewChange();
 	}
 
 	public RectangleCoordinate getRegion()
