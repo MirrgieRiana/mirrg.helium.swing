@@ -9,6 +9,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.Data;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolScroll;
+import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolZoom;
 
 public class Game2 extends PhosphorusGame<Game2>
 {
@@ -29,6 +30,7 @@ public class Game2 extends PhosphorusGame<Game2>
 		addTool(new ToolGame2(this));
 
 		addTool(new ToolScroll(this, MouseEvent.BUTTON2));
+		addTool(new ToolZoom(this));
 		addTool(new ToolPutBlock(this, MouseEvent.BUTTON1));
 		addTool(new ToolPutLine(this, MouseEvent.BUTTON3));
 

@@ -8,19 +8,12 @@ import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 public class ToolScroll extends Tool<PhosphorusGame<?>>
 {
 
-	public double deltaZoom = 1.1;
 	private PointScreen point;
 
 	public ToolScroll(PhosphorusGame<?> game, int button)
 	{
 		super(game);
 
-		// 拡大
-		registerEvent(EventPhosphorusCanvas.EventWheel.Moved.class, e -> {
-			game.getView().setZoom(game.getView().getZoom() * Math.pow(deltaZoom, e.event.getWheelRotation()));
-		});
-
-		// 移動
 		registerEvent(EventPhosphorusCanvas.EventMouse.Pressed.class, e -> {
 			if (e.event.getButton() == button) {
 				point = new PointScreen(e.event.getPoint());
