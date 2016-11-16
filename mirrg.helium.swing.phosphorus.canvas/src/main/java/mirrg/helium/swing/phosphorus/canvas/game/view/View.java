@@ -53,13 +53,28 @@ public class View
 		viewContext.onViewChangePost();
 	}
 
-	public RectangleCoordinate getRegion()
+	public RectangleScreen getScreenRectangle()
 	{
-		return new RectangleCoordinate(
-			getCoordinateX(0),
-			getCoordinateY(0),
-			getCoordinateWidth(),
-			getCoordinateHeight());
+		return new RectangleScreen(
+			getScreenX(0),
+			getScreenY(0),
+			getScreenWidth(),
+			getScreenHeight());
+	}
+
+	public PointScreen getScreenCenter()
+	{
+		return new PointScreen(getScreenCenterX(), getScreenCenterY());
+	}
+
+	public PointScreen getScreenTopLeft()
+	{
+		return new PointScreen(0, 0);
+	}
+
+	public PointScreen getScreenBottomRight()
+	{
+		return new PointScreen(getScreenWidth(), getScreenHeight());
 	}
 
 	public double getScreenWidth()
@@ -72,6 +87,56 @@ public class View
 		return viewContext.getHeight();
 	}
 
+	public double getScreenCenterX()
+	{
+		return getScreenWidth() / 2;
+	}
+
+	public double getScreenCenterY()
+	{
+		return getScreenHeight() / 2;
+	}
+
+	public double getScreenX(double coordinateX)
+	{
+		double offsetCoordinateX = coordinateX - getX();
+		double offsetScreenX = offsetCoordinateX / getZoom();
+		double screenX = getScreenCenterX() + offsetScreenX;
+		return screenX;
+	}
+
+	public double getScreenY(double coordinateY)
+	{
+		double offsetCoordinateY = coordinateY - getY();
+		double offsetScreenY = offsetCoordinateY / getZoom();
+		double screenY = getScreenCenterY() + offsetScreenY;
+		return screenY;
+	}
+
+	public RectangleCoordinate getCoordinateRectangle()
+	{
+		return new RectangleCoordinate(
+			getCoordinateX(0),
+			getCoordinateY(0),
+			getCoordinateWidth(),
+			getCoordinateHeight());
+	}
+
+	public PointCoordinate getCoordinateCenter()
+	{
+		return new PointCoordinate(getCoordinateCenterX(), getCoordinateCenterY());
+	}
+
+	public PointCoordinate getCoordinateTopLeft()
+	{
+		return new PointCoordinate(getCoordinateX(0), getCoordinateY(0));
+	}
+
+	public PointCoordinate getCoordinateBottomRight()
+	{
+		return new PointCoordinate(getCoordinateX(getScreenWidth()), getCoordinateY(getScreenHeight()));
+	}
+
 	public double getCoordinateWidth()
 	{
 		return getScreenWidth() * getZoom();
@@ -82,29 +147,19 @@ public class View
 		return getScreenHeight() * getZoom();
 	}
 
-	public double getCenterScreenX()
-	{
-		return getScreenWidth() / 2;
-	}
-
-	public double getCenterScreenY()
-	{
-		return getScreenHeight() / 2;
-	}
-
-	public double getCenterCoordinateX()
+	public double getCoordinateCenterX()
 	{
 		return getX();
 	}
 
-	public double getCenterCoordinateY()
+	public double getCoordinateCenterY()
 	{
 		return getY();
 	}
 
 	public double getCoordinateX(double screenX)
 	{
-		double offsetScreenX = screenX - getCenterScreenX();
+		double offsetScreenX = screenX - getScreenCenterX();
 		double offsetCoordinateX = offsetScreenX * getZoom();
 		double coordinateX = getX() + offsetCoordinateX;
 		return coordinateX;
@@ -112,26 +167,10 @@ public class View
 
 	public double getCoordinateY(double screenY)
 	{
-		double offsetScreenY = screenY - getCenterScreenY();
+		double offsetScreenY = screenY - getScreenCenterY();
 		double offsetCoordinateY = offsetScreenY * getZoom();
 		double coordinateY = getY() + offsetCoordinateY;
 		return coordinateY;
-	}
-
-	public double getScreenX(double coordinateX)
-	{
-		double offsetCoordinateX = coordinateX - getX();
-		double offsetScreenX = offsetCoordinateX / getZoom();
-		double screenX = getCenterScreenX() + offsetScreenX;
-		return screenX;
-	}
-
-	public double getScreenY(double coordinateY)
-	{
-		double offsetCoordinateY = coordinateY - getY();
-		double offsetScreenY = offsetCoordinateY / getZoom();
-		double screenY = getCenterScreenY() + offsetScreenY;
-		return screenY;
 	}
 
 	public RectangleCoordinate convert(RectangleScreen rectangle)

@@ -38,7 +38,7 @@ public class Existence<G extends PhosphorusGame<?>>
 		Optional<RectangleCoordinate> oRectangle = getOpticalBounds(layer);
 		if (oRectangle.isPresent()) {
 			RectangleCoordinate rectangle = oRectangle.get();
-			if (game.getView().getRegion().contains(rectangle)) {
+			if (game.getView().getCoordinateRectangle().contains(rectangle)) {
 				layer.dirty();
 			}
 		}

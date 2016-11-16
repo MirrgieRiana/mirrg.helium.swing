@@ -40,7 +40,7 @@ public class ToolBackground extends Tool<PhosphorusGame<?>>
 	@Override
 	public Optional<RectangleCoordinate> getOpticalBounds(Layer layer)
 	{
-		if (layer == game.layerBack) return Optional.of(game.getView().getRegion());
+		if (layer == game.layerBack) return Optional.of(game.getView().getCoordinateRectangle());
 		return super.getOpticalBounds(layer);
 	}
 

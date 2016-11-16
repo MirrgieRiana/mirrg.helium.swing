@@ -30,8 +30,8 @@ public class ToolZoom extends Tool<PhosphorusGame<?>>
 	public void doZoom(int scrollAmount)
 	{
 		double rate = Math.pow(deltaZoom, scrollAmount);
-		double x = game.getView().getCenterCoordinateX();
-		double y = game.getView().getCenterCoordinateY();
+		double x = game.getView().getCoordinateCenterX();
+		double y = game.getView().getCoordinateCenterY();
 
 		x += (point.x - game.canvas.getWidth() / 2) * game.getView().getZoom();
 		y += (point.y - game.canvas.getHeight() / 2) * game.getView().getZoom();
