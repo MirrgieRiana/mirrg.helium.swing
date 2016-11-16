@@ -2,11 +2,13 @@ package mirrg.helium.swing.phosphorus.canvas.game2;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.Data;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
+import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolScroll;
 
 public class Game2 extends PhosphorusGame<Game2>
 {
@@ -25,6 +27,10 @@ public class Game2 extends PhosphorusGame<Game2>
 		addLayer(layerOverlay = createLayer());
 
 		addTool(new ToolGame2(this));
+
+		addTool(new ToolScroll(this, MouseEvent.BUTTON2));
+		addTool(new ToolPutBlock(this, MouseEvent.BUTTON1));
+		addTool(new ToolPutLine(this, MouseEvent.BUTTON3));
 
 		DataEntityGame2 dataEntityGame2 = new DataEntityGame2();
 		addEntity(dataEntityGame2);
