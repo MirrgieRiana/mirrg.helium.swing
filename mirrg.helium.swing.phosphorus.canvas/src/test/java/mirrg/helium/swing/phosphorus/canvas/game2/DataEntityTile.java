@@ -66,7 +66,7 @@ public class DataEntityTile extends DataEntity<Game2>
 
 			} else if (layer == game.layerMain) {
 				graphics.setColor(Color.white);
-				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getZoom())));
+				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getZoomX())));
 
 				PointScreen point = game.getView().convert(getOpticalBounds(layer).get()).getCenter();
 				String string = "" + (int) (i * 99);

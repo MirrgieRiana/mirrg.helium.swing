@@ -12,8 +12,8 @@ import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
 import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolBackground;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IView;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IViewContext;
-import mirrg.helium.swing.phosphorus.canvas.game.view.View;
 
 public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 {
@@ -172,7 +172,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	};
 
-	public View getView()
+	public IView getView()
 	{
 		return data.view.getView(viewContext);
 	}

@@ -4,6 +4,7 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IViewXY;
 
 public class ToolScroll extends Tool<PhosphorusGame<?>>
 {
@@ -26,8 +27,12 @@ public class ToolScroll extends Tool<PhosphorusGame<?>>
 		});
 		registerEvent(EventPhosphorusCanvas.EventMouseMotion.Dragged.class, e -> {
 			if (point != null) {
-				game.getView().setX(game.getView().getX() - game.getView().getZoom() * (e.event.getPoint().x - point.x));
-				game.getView().setY(game.getView().getY() - game.getView().getZoom() * (e.event.getPoint().y - point.y));
+				if (game.getView() instanceof IViewXY) {
+					IViewXY view = (IViewXY) game.getView();
+
+					view.setX(game.getView().getX() - game.getView().getZoomX() * (e.event.getPoint().x - point.x));
+					view.setY(game.getView().getY() - game.getView().getZoomY() * (e.event.getPoint().y - point.y));
+				}
 				point = new PointScreen(e.event.getPoint());
 			}
 		});

@@ -4,6 +4,9 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IViewXY;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IViewZoom;
+import mirrg.helium.swing.phosphorus.canvas.game.view.IViewZoomXY;
 
 public class ToolZoom extends Tool<PhosphorusGame<?>>
 {
@@ -30,19 +33,33 @@ public class ToolZoom extends Tool<PhosphorusGame<?>>
 	public void doZoom(int scrollAmount)
 	{
 		double rate = Math.pow(deltaZoom, scrollAmount);
-		double x = game.getView().getCoordinateCenterX();
-		double y = game.getView().getCoordinateCenterY();
+		double x = game.getView().getX();
+		double y = game.getView().getY();
 
-		x += (point.x - game.canvas.getWidth() / 2) * game.getView().getZoom();
-		y += (point.y - game.canvas.getHeight() / 2) * game.getView().getZoom();
+		x += (point.x - game.canvas.getWidth() / 2) * game.getView().getZoomX();
+		y += (point.y - game.canvas.getHeight() / 2) * game.getView().getZoomY();
 
-		game.getView().setZoom(game.getView().getZoom() * rate);
+		if (game.getView() instanceof IViewZoom) {
+			IViewZoom view = (IViewZoom) game.getView();
 
-		x -= (point.x - game.canvas.getWidth() / 2) * game.getView().getZoom();
-		y -= (point.y - game.canvas.getHeight() / 2) * game.getView().getZoom();
+			view.setZoom(view.getZoom() * rate);
+		} else if (game.getView() instanceof IViewZoomXY) {
+			IViewZoomXY view = (IViewZoomXY) game.getView();
 
-		game.getView().setX(x);
-		game.getView().setY(y);
+			view.setZoomX(view.getZoomX() * rate);
+			view.setZoomY(view.getZoomY() * rate);
+		}
+
+		x -= (point.x - game.canvas.getWidth() / 2) * game.getView().getZoomX();
+		y -= (point.y - game.canvas.getHeight() / 2) * game.getView().getZoomY();
+
+		if (game.getView() instanceof IViewXY) {
+			IViewXY view = (IViewXY) game.getView();
+
+			view.setX(x);
+			view.setY(y);
+		}
+
 	}
 
 }
