@@ -10,10 +10,20 @@ public abstract class RectangleBase<P extends PointBase>
 
 	public RectangleBase(double x, double y, double width, double height)
 	{
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		if (width >= 0) {
+			this.x = x;
+			this.width = width;
+		} else {
+			this.x = x + width;
+			this.width = -width;
+		}
+		if (height >= 0) {
+			this.y = y;
+			this.height = height;
+		} else {
+			this.y = y + height;
+			this.height = -height;
+		}
 	}
 
 	public boolean contains(RectangleBase<P> rectangle)
