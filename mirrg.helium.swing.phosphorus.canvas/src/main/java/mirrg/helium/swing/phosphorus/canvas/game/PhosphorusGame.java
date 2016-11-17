@@ -75,6 +75,11 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	private ArrayList<Tool<? super SELF>> tools = new ArrayList<>();
 
+	public Stream<Tool<? super SELF>> getTools()
+	{
+		return tools.stream();
+	}
+
 	public void addTool(Tool<? super SELF> tool)
 	{
 		tools.add(tool);
@@ -144,7 +149,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	//
 
-	private IViewContext viewContext = new IViewContext() {
+	protected IViewContext viewContext = new IViewContext() {
 
 		@Override
 		public void onViewChangePre()
