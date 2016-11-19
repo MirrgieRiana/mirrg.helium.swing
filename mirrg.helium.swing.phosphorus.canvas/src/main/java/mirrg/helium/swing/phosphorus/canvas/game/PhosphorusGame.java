@@ -24,13 +24,13 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	public PhosphorusGame(PhosphorusCanvas canvas, Data<SELF> data)
 	{
 		this.canvas = canvas;
-		this.data = data;
 
 		canvas.event().register(EventPhosphorusCanvas.EventComponent.Resized.class, e -> layers.forEach(Layer::dirty));
 
 		addLayer(layerBack = createLayer());
 		addTool(toolBackground = new ToolBackground(this));
 
+		setData(data);
 	}
 
 	//
@@ -57,10 +57,11 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	public synchronized void setData(Data<SELF> data)
 	{
-		this.data.dispose();
-		this.data = data;
+		onViewChangePre();
 
-		data.initialize(getThis());
+		if (this.data != null) this.data.dispose();
+		this.data = data;
+		this.data.initialize(getThis());
 
 		onViewChangePost();
 	}
