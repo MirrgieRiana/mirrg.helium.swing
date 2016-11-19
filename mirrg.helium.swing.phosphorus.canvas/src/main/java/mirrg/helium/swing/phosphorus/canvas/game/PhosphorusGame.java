@@ -57,10 +57,10 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 
 	public synchronized void setData(Data<SELF> data)
 	{
-		this.data.dispose(getThis());
+		this.data.dispose();
 		this.data = data;
 
-		data.entities.forEach(e -> e.touch(getThis()));
+		data.initialize(getThis());
 
 		onViewChangePost();
 	}
@@ -93,10 +93,10 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 	public void addEntity(DataEntity<? super SELF> entity)
 	{
 		data.entities.add(entity);
-		entity.touch(getThis());
+		entity.initialize(getThis());
 
 		layers.forEach(l -> {
-			if (entity.getEntity(getThis()).getOpticalBounds(l).isPresent()) l.dirty();
+			if (entity.getEntity().getOpticalBounds(l).isPresent()) l.dirty();
 		});
 	}
 
@@ -106,7 +106,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 		eventManager.post(new EventPhosphorusGame.Move.Pre());
 
 		data.entities.stream()
-			.forEach(e -> e.getEntity(getThis()).move());
+			.forEach(e -> e.getEntity().move());
 		tools.stream()
 			.forEach(e -> e.move());
 
@@ -120,7 +120,7 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
 			l.paint(g, () -> {
 				Stream.concat(
 					data.entities.stream()
-						.map(e -> e.getEntity(getThis())),
+						.map(e -> e.getEntity()),
 					tools.stream())
 					.sorted((a, b) -> (int) Math.signum(a.getZOrder() - b.getZOrder()))
 					.forEach(e -> e.render(l));

@@ -2,7 +2,9 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
-public abstract class DataViewBase
+import mirrg.helium.swing.phosphorus.canvas.game.IData;
+
+public abstract class DataViewBase implements IData<Object>
 {
 
 	public double x = 0;
@@ -18,5 +20,17 @@ public abstract class DataViewBase
 	}
 
 	protected abstract IView createView(IViewContext viewContext);
+
+	@Override
+	public void initialize(Object game)
+	{
+
+	}
+
+	@Override
+	public void dispose()
+	{
+
+	}
 
 }
