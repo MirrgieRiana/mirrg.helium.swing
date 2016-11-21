@@ -3,12 +3,14 @@ package mirrg.helium.swing.phosphorus.canvas.game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import mirrg.helium.standard.hydrogen.event.EventManager;
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
+import mirrg.helium.swing.phosphorus.canvas.game.existence.Existence;
 import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolBackground;
@@ -106,9 +108,9 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF, DATA>, DATA extend
 	{
 		eventManager.post(new EventPhosphorusGame.Move.Pre());
 
-		data.entities.stream()
-			.forEach(e -> e.getEntity().move());
-		tools.stream()
+		ArrayList<Existence<? super SELF>> existences = new ArrayList<>();
+		getExistences(existences::add);
+		existences.stream()
 			.forEach(e -> e.move());
 
 		eventManager.post(new EventPhosphorusGame.Move.Post());
@@ -119,14 +121,22 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF, DATA>, DATA extend
 	{
 		layers.forEach(l -> {
 			l.paint(g, () -> {
-				Stream.concat(
-					data.entities.stream()
-						.map(e -> e.getEntity()),
-					tools.stream())
+				ArrayList<Existence<? super SELF>> existences = new ArrayList<>();
+				getExistences(existences::add);
+				existences.stream()
 					.sorted((a, b) -> (int) Math.signum(a.getZOrder() - b.getZOrder()))
 					.forEach(e -> e.render(l));
 			});
 		});
+	}
+
+	public void getExistences(Consumer<Existence<? super SELF>> consumer)
+	{
+		data.entities.stream()
+			.map(DataEntity::getEntity)
+			.forEach(consumer::accept);
+		tools.stream()
+			.forEach(consumer::accept);
 	}
 
 	//
