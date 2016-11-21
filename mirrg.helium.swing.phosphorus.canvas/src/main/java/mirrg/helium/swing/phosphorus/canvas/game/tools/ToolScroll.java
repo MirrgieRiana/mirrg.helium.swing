@@ -6,12 +6,12 @@ import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IViewXY;
 
-public class ToolScroll extends Tool<PhosphorusGame<?>>
+public class ToolScroll extends Tool<PhosphorusGame<?, ?>>
 {
 
 	private PointScreen point;
 
-	public ToolScroll(PhosphorusGame<?> game, int button)
+	public ToolScroll(PhosphorusGame<?, ?> game, int button)
 	{
 		super(game);
 

@@ -5,7 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import mirrg.helium.swing.phosphorus.canvas.game.IData;
 import mirrg.helium.swing.phosphorus.canvas.game.PhosphorusGame;
 
-public class DataEntity<G extends PhosphorusGame<?>> implements IData<G>
+public class DataEntity<G extends PhosphorusGame<?, ?>> implements IData<G>
 {
 
 	@XStreamOmitField

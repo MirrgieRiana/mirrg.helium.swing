@@ -8,13 +8,13 @@ import mirrg.helium.swing.phosphorus.canvas.game.view.IViewXY;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IViewZoom;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IViewZoomXY;
 
-public class ToolZoom extends Tool<PhosphorusGame<?>>
+public class ToolZoom extends Tool<PhosphorusGame<?, ?>>
 {
 
 	public double deltaZoom = 1.1;
 	private PointScreen point;
 
-	public ToolZoom(PhosphorusGame<?> game)
+	public ToolZoom(PhosphorusGame<?, ?> game)
 	{
 		super(game);
 

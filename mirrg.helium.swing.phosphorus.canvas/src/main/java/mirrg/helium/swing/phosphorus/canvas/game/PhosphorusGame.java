@@ -15,13 +15,13 @@ import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolBackground;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IView;
 import mirrg.helium.swing.phosphorus.canvas.game.view.IViewContext;
 
-public class PhosphorusGame<SELF extends PhosphorusGame<SELF>> implements IGame
+public class PhosphorusGame<SELF extends PhosphorusGame<SELF, DATA>, DATA extends Data<SELF>> implements IGame
 {
 
 	public final Layer layerBack;
 	public final ToolBackground toolBackground;
 
-	public PhosphorusGame(PhosphorusCanvas canvas, Data<SELF> data)
+	public PhosphorusGame(PhosphorusCanvas canvas, DATA data)
 	{
 		this.canvas = canvas;
 

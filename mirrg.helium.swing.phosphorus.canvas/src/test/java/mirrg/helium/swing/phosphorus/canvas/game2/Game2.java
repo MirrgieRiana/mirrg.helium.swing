@@ -11,7 +11,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolScroll;
 import mirrg.helium.swing.phosphorus.canvas.game.tools.ToolZoom;
 
-public class Game2 extends PhosphorusGame<Game2>
+public class Game2 extends PhosphorusGame<Game2, Data<Game2>>
 {
 
 	public final Layer layerMain;

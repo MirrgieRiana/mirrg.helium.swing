@@ -9,12 +9,12 @@ import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class ToolBackground extends Tool<PhosphorusGame<?>>
+public class ToolBackground extends Tool<PhosphorusGame<?, ?>>
 {
 
 	public Color color = Color.white;
 
-	public ToolBackground(PhosphorusGame<?> game)
+	public ToolBackground(PhosphorusGame<?, ?> game)
 	{
 		super(game);
 	}
