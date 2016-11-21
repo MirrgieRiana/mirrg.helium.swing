@@ -48,14 +48,14 @@ public class PhosphorusGame<SELF extends PhosphorusGame<SELF, DATA>, DATA extend
 
 	//
 
-	private Data<SELF> data;
+	private DATA data;
 
-	public Object getData()
+	public DATA getData()
 	{
 		return data;
 	}
 
-	public synchronized void setData(Data<SELF> data)
+	public synchronized void setData(DATA data)
 	{
 		onViewChangePre();
 
