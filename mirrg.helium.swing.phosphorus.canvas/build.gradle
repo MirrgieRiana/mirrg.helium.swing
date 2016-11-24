@@ -24,9 +24,9 @@ dependencies {
 	//compile group: 'mirrg', name: 'mirrg.struct.hydrogen', version: '2.0.0'
 	//compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
 	//compile group: 'mirrg', name: 'mirrg.struct.hydrogen-1.0', version: '+'
-	compile 'mirrg:mirrg.helium.standard.hydrogen.struct:+'
+	//compile 'mirrg:mirrg.helium.standard.hydrogen.struct:+'
 	compile 'mirrg:mirrg.helium.standard.hydrogen.event:+'
-	compile 'mirrg:mirrg.helium.standard.hydrogen.util:+'
+	//compile 'mirrg:mirrg.helium.standard.hydrogen.util:+'
 
 	compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
 

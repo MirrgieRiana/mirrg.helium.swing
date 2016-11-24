@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import javax.swing.WindowConstants;
 
-import mirrg.helium.swing.phosphorus.canvas.game.IGame;
 import mirrg.helium.swing.phosphorus.canvas.game1.Game1;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.IntervalThread;
@@ -18,12 +17,12 @@ public class SampleGame1
 	}
 
 	public static void doGame(
-		Function<PhosphorusCanvas, IGame> supplierGame,
+		Function<PhosphorusCanvas, Game1> supplierGame,
 		int width, int height,
 		double fpsRender, double fpsMove)
 	{
 		FrameCanvas frame = new FrameCanvas(width, height);
-		IGame game = supplierGame.apply(frame.canvas);
+		Game1 game = supplierGame.apply(frame.canvas);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 

@@ -6,9 +6,8 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.game.IGame;
 
-public class Game1 implements IGame
+public class Game1
 {
 
 	private PhosphorusCanvas canvas;
@@ -23,7 +22,6 @@ public class Game1 implements IGame
 		}
 	}
 
-	@Override
 	public void move()
 	{
 		planets.forEach(Planet::move);
@@ -33,7 +31,6 @@ public class Game1 implements IGame
 		}
 	}
 
-	@Override
 	public void render(Graphics2D g)
 	{
 		g.setBackground(Color.black);
