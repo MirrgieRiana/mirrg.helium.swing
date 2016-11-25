@@ -6,7 +6,7 @@ import com.thoughtworks.xstream.XStream;
 
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 
 public class ToolGame2 extends Entity<Game2>
 {

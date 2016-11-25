@@ -5,12 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class ModelEntityTile extends ModelLiving<Game2>
+public class ModelEntityTile extends ModelEntity<Game2>
 {
 
 	public int x;

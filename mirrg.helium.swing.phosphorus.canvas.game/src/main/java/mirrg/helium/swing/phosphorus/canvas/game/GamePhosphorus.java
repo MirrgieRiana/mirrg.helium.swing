@@ -10,7 +10,7 @@ import mirrg.helium.game.carbon.base.EventGameCarbon;
 import mirrg.helium.game.carbon.base.GameCarbon;
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ToolBackground;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView;

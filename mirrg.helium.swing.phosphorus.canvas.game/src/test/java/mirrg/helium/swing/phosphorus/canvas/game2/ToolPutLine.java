@@ -11,7 +11,7 @@ import mirrg.helium.standard.hydrogen.struct.Tuple;
 import mirrg.helium.standard.hydrogen.util.HLambda;
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 

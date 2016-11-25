@@ -10,7 +10,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class ModelLiving<G extends GamePhosphorus<?, ?, ?>> extends ModelCarbon<G>
+public class ModelEntity<G extends GamePhosphorus<?, ?, ?>> extends ModelCarbon<G>
 {
 
 	@Override

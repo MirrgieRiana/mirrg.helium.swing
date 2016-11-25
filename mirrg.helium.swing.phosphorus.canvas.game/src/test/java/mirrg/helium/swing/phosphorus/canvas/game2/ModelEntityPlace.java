@@ -5,13 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
 
-public class ModelEntityPlace extends ModelLiving<Game2>
+public class ModelEntityPlace extends ModelEntity<Game2>
 {
 
 	public PointCoordinate point;

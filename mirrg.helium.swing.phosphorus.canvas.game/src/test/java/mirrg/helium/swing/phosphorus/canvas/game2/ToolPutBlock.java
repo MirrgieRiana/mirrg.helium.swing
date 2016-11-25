@@ -2,7 +2,7 @@ package mirrg.helium.swing.phosphorus.canvas.game2;
 
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 

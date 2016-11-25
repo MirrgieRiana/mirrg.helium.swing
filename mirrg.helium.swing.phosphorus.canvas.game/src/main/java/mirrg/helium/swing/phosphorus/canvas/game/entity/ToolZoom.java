@@ -2,7 +2,7 @@ package mirrg.helium.swing.phosphorus.canvas.game.entity;
 
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewSkewed.ControllerViewSkewed;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;

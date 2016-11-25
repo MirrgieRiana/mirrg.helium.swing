@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Optional;
 
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
-import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
