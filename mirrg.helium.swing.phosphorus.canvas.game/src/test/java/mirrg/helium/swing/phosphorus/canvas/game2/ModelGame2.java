@@ -38,4 +38,38 @@ public class ModelGame2 extends ModelPhosphorus<Game2, ModelViewDefault>
 		return entities.stream();
 	}
 
+	@Override
+	protected ControllerGame2 createController(Game2 game)
+	{
+		return new ControllerGame2(game);
+	}
+
+	@Override
+	public ControllerGame2 getController()
+	{
+		return (ControllerGame2) super.getController();
+	}
+
+	public class ControllerGame2 extends ControllerPhosphorus
+	{
+
+		public ControllerGame2(Game2 game)
+		{
+			super(game);
+		}
+
+		public void initTiles()
+		{
+			for (int y = 0; y < tiles.length; y++) {
+				for (int x = 0; x < tiles[y].length; x++) {
+					ModelEntityTile tile = new ModelEntityTile(game, x, y);
+
+					tiles[y][x] = tile;
+					addEntity(tile);
+				}
+			}
+		}
+
+	}
+
 }

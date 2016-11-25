@@ -6,8 +6,8 @@ import javax.swing.WindowConstants;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault;
-import mirrg.helium.swing.phosphorus.canvas.game2.ModelGame2;
 import mirrg.helium.swing.phosphorus.canvas.game2.Game2;
+import mirrg.helium.swing.phosphorus.canvas.game2.ModelGame2;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.IntervalThread;
 
@@ -16,7 +16,12 @@ public class SampleGame2
 
 	public static void main(String[] args)
 	{
-		doGame(c -> new Game2(c, new ModelGame2(new ModelViewDefault())), 600, 600, 60, 60);
+		doGame(c -> {
+			Game2 game = new Game2(c);
+			game.setModel(new ModelGame2(new ModelViewDefault()));
+			game.getModel().getController().initTiles();
+			return game;
+		}, 600, 600, 60, 60);
 	}
 
 	public static void doGame(

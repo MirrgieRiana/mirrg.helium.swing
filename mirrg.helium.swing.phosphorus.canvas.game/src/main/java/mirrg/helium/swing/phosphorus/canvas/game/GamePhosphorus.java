@@ -24,9 +24,8 @@ public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODE
 	public final Layer layerBack;
 	public final ToolBackground toolBackground;
 
-	public GamePhosphorus(MODEL model, PhosphorusCanvas canvas)
+	public GamePhosphorus(PhosphorusCanvas canvas)
 	{
-		super(model);
 		this.canvas = canvas;
 
 		addLayer(layerBack = createLayer());

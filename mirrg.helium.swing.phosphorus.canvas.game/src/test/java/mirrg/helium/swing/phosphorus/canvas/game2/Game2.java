@@ -19,9 +19,9 @@ public class Game2 extends GamePhosphorus<Game2, ModelGame2, ModelViewDefault>
 
 	public String xml;
 
-	public Game2(PhosphorusCanvas canvas, ModelGame2 data)
+	public Game2(PhosphorusCanvas canvas)
 	{
-		super(data, canvas);
+		super(canvas);
 
 		addLayer(layerMain = createLayer());
 		addLayer(layerOverlay = createLayer());
@@ -32,15 +32,6 @@ public class Game2 extends GamePhosphorus<Game2, ModelGame2, ModelViewDefault>
 		addTool(new ToolZoom(this));
 		addTool(new ToolPutBlock(this, MouseEvent.BUTTON1));
 		addTool(new ToolPutLine(this, MouseEvent.BUTTON3));
-
-		for (int y = 0; y < getModel().tiles.length; y++) {
-			for (int x = 0; x < getModel().tiles[y].length; x++) {
-				ModelEntityTile tile = new ModelEntityTile(this, x, y);
-
-				getModel().tiles[y][x] = tile;
-				getModel().addEntity(tile);
-			}
-		}
 
 	}
 
