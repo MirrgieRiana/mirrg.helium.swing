@@ -1,29 +1,31 @@
-package mirrg.helium.swing.phosphorus.canvas;
+package mirrg.helium.swing.phosphorus.canvas.game;
 
 import java.util.function.Function;
 
 import javax.swing.WindowConstants;
 
-import mirrg.helium.swing.phosphorus.canvas.game.IGame;
-import mirrg.helium.swing.phosphorus.canvas.game1.Game1;
+import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault;
+import mirrg.helium.swing.phosphorus.canvas.game2.ModelGame2;
+import mirrg.helium.swing.phosphorus.canvas.game2.Game2;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
 import mirrg.helium.swing.phosphorus.canvas.util.IntervalThread;
 
-public class SampleGame1
+public class SampleGame2
 {
 
 	public static void main(String[] args)
 	{
-		doGame(c -> new Game1(c, 100), 600, 600, 60, 60);
+		doGame(c -> new Game2(c, new ModelGame2(new ModelViewDefault())), 600, 600, 60, 60);
 	}
 
 	public static void doGame(
-		Function<PhosphorusCanvas, IGame> supplierGame,
+		Function<PhosphorusCanvas, GamePhosphorus<?, ?, ?>> supplierGame,
 		int width, int height,
 		double fpsRender, double fpsMove)
 	{
 		FrameCanvas frame = new FrameCanvas(width, height);
-		IGame game = supplierGame.apply(frame.canvas);
+		GamePhosphorus<?, ?, ?> game = supplierGame.apply(frame.canvas);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 

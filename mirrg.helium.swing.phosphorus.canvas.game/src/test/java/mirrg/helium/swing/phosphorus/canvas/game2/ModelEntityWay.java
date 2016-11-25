@@ -5,25 +5,25 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.existence.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class DataEntityWay extends DataEntity<Game2>
+public class ModelEntityWay extends ModelLiving<Game2>
 {
 
-	public DataEntityPlace begin;
-	public DataEntityPlace end;
+	public ModelEntityPlace begin;
+	public ModelEntityPlace end;
 
-	public DataEntityWay(DataEntityPlace begin, DataEntityPlace end)
+	public ModelEntityWay(Game2 game, ModelEntityPlace begin, ModelEntityPlace end)
 	{
 		this.begin = begin;
 		this.end = end;
+		initialize(game);
 	}
 
 	@Override
-	protected Entity<Game2> createEntity(Game2 game)
+	protected Entity<Game2> createController(Game2 game)
 	{
 		return new EntityWay(game);
 	}
@@ -58,10 +58,10 @@ public class DataEntityWay extends DataEntity<Game2>
 				graphics.setColor(Color.black);
 
 				graphics.draw(new Line2D.Double(
-					game.getView().getScreenX(begin.point.x),
-					game.getView().getScreenY(begin.point.y),
-					game.getView().getScreenX(end.point.x),
-					game.getView().getScreenY(end.point.y)));
+					game.getView().getController().getScreenX(begin.point.x),
+					game.getView().getController().getScreenY(begin.point.y),
+					game.getView().getController().getScreenX(end.point.x),
+					game.getView().getController().getScreenY(end.point.y)));
 
 			}
 		}

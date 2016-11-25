@@ -27,6 +27,8 @@ dependencies {
 	compile 'mirrg:mirrg.helium.standard.hydrogen.struct:+'
 	compile 'mirrg:mirrg.helium.standard.hydrogen.event:+'
 	compile 'mirrg:mirrg.helium.standard.hydrogen.util:+'
+	compile 'mirrg:mirrg.helium.swing.phosphorus.canvas:+'
+	compile 'mirrg:mirrg.helium.game.carbon.base:0.0.5+'
 
 	compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
 
@@ -38,6 +40,8 @@ def mavenRepositories = [
 	//'https://raw.githubusercontent.com/MirrgieRiana/mirrg.struct.hydrogen/master/maven',
 	//'http://hg.pf.osdn.jp/view/t/ta/tacticsrealize/mirrg.struct.hydrogen/raw-file/tip/maven',
 	'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.standard/master/maven',
+	'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.swing/master/maven',
+	'https://raw.githubusercontent.com/MirrgieRiana/mirrg.helium.game/master/maven',
 
 ]
 

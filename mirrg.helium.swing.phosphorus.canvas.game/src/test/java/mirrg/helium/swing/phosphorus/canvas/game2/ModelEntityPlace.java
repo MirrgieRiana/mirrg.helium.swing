@@ -5,25 +5,25 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.existence.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
 
-public class DataEntityPlace extends DataEntity<Game2>
+public class ModelEntityPlace extends ModelLiving<Game2>
 {
 
 	public PointCoordinate point;
 
-	public DataEntityPlace(PointCoordinate point)
+	public ModelEntityPlace(Game2 game, PointCoordinate point)
 	{
 		this.point = point;
+		initialize(game);
 	}
 
 	@Override
-	protected Entity<Game2> createEntity(Game2 game)
+	protected Entity<Game2> createController(Game2 game)
 	{
 		return new EntityPlace(game);
 	}
@@ -62,7 +62,7 @@ public class DataEntityPlace extends DataEntity<Game2>
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
-				RectangleScreen rectangle = game.getView().convert(getOpticalBounds(layer).get());
+				RectangleScreen rectangle = game.getView().getController().convert(getOpticalBounds(layer).get());
 				graphics.draw(new Ellipse2D.Double(rectangle.x, rectangle.y, rectangle.width, rectangle.height));
 
 			}

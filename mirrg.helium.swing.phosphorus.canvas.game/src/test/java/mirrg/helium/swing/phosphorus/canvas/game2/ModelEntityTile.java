@@ -5,27 +5,27 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
-import mirrg.helium.swing.phosphorus.canvas.game.existence.DataEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.existence.Entity;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class DataEntityTile extends DataEntity<Game2>
+public class ModelEntityTile extends ModelLiving<Game2>
 {
 
 	public int x;
 	public int y;
 	public double i;
 
-	public DataEntityTile(int x, int y)
+	public ModelEntityTile(Game2 game, int x, int y)
 	{
 		this.x = x;
 		this.y = y;
+		initialize(game);
 	}
 
 	@Override
-	protected Entity<Game2> createEntity(Game2 game)
+	protected Entity<Game2> createController(Game2 game)
 	{
 		return new EntityTile(game);
 	}
@@ -62,13 +62,13 @@ public class DataEntityTile extends DataEntity<Game2>
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
-				graphics.fill(game.getView().convert(getOpticalBounds(layer).get()).toShape());
+				graphics.fill(game.getView().getController().convert(getOpticalBounds(layer).get()).toShape());
 
 			} else if (layer == game.layerMain) {
 				graphics.setColor(Color.white);
-				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getZoomX())));
+				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getController().getZoomX())));
 
-				PointScreen point = game.getView().convert(getOpticalBounds(layer).get()).getCenter();
+				PointScreen point = game.getView().getController().convert(getOpticalBounds(layer).get()).getCenter();
 				String string = "" + (int) (i * 99);
 				Rectangle2D bounds = graphics.getFontMetrics().getStringBounds(string, graphics);
 				graphics.drawString(string,

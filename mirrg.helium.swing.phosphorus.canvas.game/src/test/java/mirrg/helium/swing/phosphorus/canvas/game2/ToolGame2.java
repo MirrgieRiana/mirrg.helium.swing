@@ -5,14 +5,12 @@ import java.awt.event.KeyEvent;
 import com.thoughtworks.xstream.XStream;
 
 import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.game.Data;
-import mirrg.helium.swing.phosphorus.canvas.game.EventPhosphorusGame;
-import mirrg.helium.swing.phosphorus.canvas.game.existence.Tool;
+import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
+import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
 
-public class ToolGame2 extends Tool<Game2>
+public class ToolGame2 extends Entity<Game2>
 {
 
-	@SuppressWarnings("unchecked")
 	public ToolGame2(Game2 game)
 	{
 		super(game);
@@ -20,12 +18,12 @@ public class ToolGame2 extends Tool<Game2>
 		// セーブロード
 		registerEvent(EventPhosphorusCanvas.EventKey.Released.class, e -> {
 			if (e.event.getKeyCode() == KeyEvent.VK_F3) {
-				game.xml = getXStream().toXML(game.getData());
+				game.xml = getXStream().toXML(game.getModel());
 				System.out.println(game.xml);
 			} else if (e.event.getKeyCode() == KeyEvent.VK_F4) {
 				if (game.xml != null) {
-					game.event().registerRemovable(EventPhosphorusGame.Move.Post.class, e2 -> {
-						game.setData((Data<Game2>) getXStream().fromXML(game.xml));
+					game.event().registerRemovable(EventGamePhosphorus.Move.Post.class, e2 -> {
+						game.setModel((ModelGame2) getXStream().fromXML(game.xml));
 						return false;
 					});
 				}
