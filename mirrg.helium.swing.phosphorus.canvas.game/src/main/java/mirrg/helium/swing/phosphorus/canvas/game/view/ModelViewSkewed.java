@@ -2,7 +2,7 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 
-public class DataViewSkewed extends ModelView
+public class ModelViewSkewed extends ModelView
 {
 
 	public double zoomX = 1;
@@ -43,14 +43,14 @@ public class DataViewSkewed extends ModelView
 		public void setZoomX(double zoomX)
 		{
 			event().post(new EventView.ChangeView.Pre());
-			DataViewSkewed.this.zoomX = zoomX;
+			ModelViewSkewed.this.zoomX = zoomX;
 			event().post(new EventView.ChangeView.Post());
 		}
 
 		public void setZoomY(double zoomY)
 		{
 			event().post(new EventView.ChangeView.Pre());
-			DataViewSkewed.this.zoomY = zoomY;
+			ModelViewSkewed.this.zoomY = zoomY;
 			event().post(new EventView.ChangeView.Post());
 		}
 

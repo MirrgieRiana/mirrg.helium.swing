@@ -4,7 +4,7 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelLiving.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
-import mirrg.helium.swing.phosphorus.canvas.game.view.DataViewSkewed.ControllerViewSkewed;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewSkewed.ControllerViewSkewed;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
 public class ToolZoom extends Entity<GamePhosphorus<?, ?, ?>>
