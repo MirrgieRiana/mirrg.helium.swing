@@ -4,8 +4,6 @@ import java.util.function.Consumer;
 
 import mirrg.helium.game.carbon.base.ControllerCarbon;
 import mirrg.helium.game.carbon.base.ModelCarbon;
-import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
-import mirrg.helium.swing.phosphorus.canvas.game.view.EventView;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView;
 
 public class ModelPhosphorus<G extends GamePhosphorus<?, ?, ?>, V extends ModelView> extends ModelCarbon<G>
@@ -43,9 +41,6 @@ public class ModelPhosphorus<G extends GamePhosphorus<?, ?, ?>, V extends ModelV
 		public ControllerPhosphorus(G game)
 		{
 			super(game);
-			view.getController().event().register(EventView.ChangeView.Post.class, e -> {
-				game.getLayers().forEach(Layer::dirty);
-			});
 		}
 
 		public V getView()

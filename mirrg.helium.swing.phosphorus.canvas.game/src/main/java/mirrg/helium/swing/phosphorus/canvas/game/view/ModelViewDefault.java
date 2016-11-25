@@ -1,5 +1,6 @@
 package mirrg.helium.swing.phosphorus.canvas.game.view;
 
+import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 
 public class ModelViewDefault extends ModelView
@@ -46,9 +47,9 @@ public class ModelViewDefault extends ModelView
 
 		public void setZoom(double zoom)
 		{
-			event().post(new EventView.ChangeView.Pre());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
 			ModelViewDefault.this.zoom = zoom;
-			event().post(new EventView.ChangeView.Post());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 	}

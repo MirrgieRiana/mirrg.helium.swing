@@ -1,5 +1,6 @@
 package mirrg.helium.swing.phosphorus.canvas.game.view;
 
+import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 
 public class ModelViewSkewed extends ModelView
@@ -42,16 +43,16 @@ public class ModelViewSkewed extends ModelView
 
 		public void setZoomX(double zoomX)
 		{
-			event().post(new EventView.ChangeView.Pre());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
 			ModelViewSkewed.this.zoomX = zoomX;
-			event().post(new EventView.ChangeView.Post());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 		public void setZoomY(double zoomY)
 		{
-			event().post(new EventView.ChangeView.Pre());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
 			ModelViewSkewed.this.zoomY = zoomY;
-			event().post(new EventView.ChangeView.Post());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 	}

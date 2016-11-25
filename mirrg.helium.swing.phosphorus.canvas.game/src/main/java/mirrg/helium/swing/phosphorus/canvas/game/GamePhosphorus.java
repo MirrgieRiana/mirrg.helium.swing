@@ -28,12 +28,13 @@ public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODE
 	{
 		super(model);
 		this.canvas = canvas;
-		canvas.event().register(EventPhosphorusCanvas.EventComponent.Resized.class, e -> dirty());
 
 		addLayer(layerBack = createLayer());
 		addTool(toolBackground = new ToolBackground(this));
 
+		canvas.event().register(EventPhosphorusCanvas.EventComponent.Resized.class, e -> dirty());
 		event().register(EventGameCarbon.ChangeModel.Post.class, e -> dirty());
+		event().register(EventGamePhosphorus.ChangeViewStatus.Post.class, e -> dirty());
 	}
 
 	//

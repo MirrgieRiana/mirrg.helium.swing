@@ -2,7 +2,7 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 
 import mirrg.helium.game.carbon.base.ControllerCarbon;
 import mirrg.helium.game.carbon.base.ModelCarbon;
-import mirrg.helium.standard.hydrogen.event.EventManager;
+import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
@@ -31,15 +31,6 @@ public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
 
 		//
 
-		private EventManager<EventView> eventManager = new EventManager<>();
-
-		public EventManager<EventView> event()
-		{
-			return eventManager;
-		}
-
-		//
-
 		public double getWidth()
 		{
 			return game.canvas.getWidth();
@@ -62,16 +53,16 @@ public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
 
 		public void setX(double x)
 		{
-			event().post(new EventView.ChangeView.Pre());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
 			ModelView.this.x = x;
-			event().post(new EventView.ChangeView.Post());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 		public void setY(double y)
 		{
-			event().post(new EventView.ChangeView.Pre());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
 			ModelView.this.y = y;
-			event().post(new EventView.ChangeView.Post());
+			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 		public abstract double getZoomX();
