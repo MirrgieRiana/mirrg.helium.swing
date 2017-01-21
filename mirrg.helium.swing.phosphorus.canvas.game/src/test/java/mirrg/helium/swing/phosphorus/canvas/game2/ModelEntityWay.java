@@ -8,6 +8,7 @@ import java.util.Optional;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
 public class ModelEntityWay extends ModelEntity<Game2>
 {
@@ -57,11 +58,12 @@ public class ModelEntityWay extends ModelEntity<Game2>
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
+				ControllerViewDefault controller = game.getModel().getController().getView().getController();
 				graphics.draw(new Line2D.Double(
-					game.getView().getController().getScreenX(begin.point.x),
-					game.getView().getController().getScreenY(begin.point.y),
-					game.getView().getController().getScreenX(end.point.x),
-					game.getView().getController().getScreenY(end.point.y)));
+					controller.getScreenX(begin.point.x),
+					controller.getScreenY(begin.point.y),
+					controller.getScreenX(end.point.x),
+					controller.getScreenY(end.point.y)));
 
 			}
 		}

@@ -14,6 +14,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
 public class ToolPutLine extends Entity<Game2>
 {
@@ -26,7 +27,8 @@ public class ToolPutLine extends Entity<Game2>
 
 		registerEvent(EventPhosphorusCanvas.EventMouse.Pressed.class, e -> {
 			if (e.event.getButton() == button) {
-				PointCoordinate point = game.getView().getController().convert(new PointScreen(e.event.getPoint()));
+				ControllerViewDefault controller = game.getModel().getController().getView().getController();
+				PointCoordinate point = controller.convert(new PointScreen(e.event.getPoint()));
 				Optional<ModelEntityPlace> oPlace = sorted(HLambda.filter(game.getModel().getEntities(), ModelEntityPlace.class),
 					a -> Point2D.distanceSq(point.x, point.y, a.point.x, a.point.y))
 						.findFirst();
@@ -36,7 +38,8 @@ public class ToolPutLine extends Entity<Game2>
 		});
 		registerEvent(EventPhosphorusCanvas.EventMouse.Released.class, e -> {
 			if (e.event.getButton() == button) {
-				PointCoordinate point = game.getView().getController().convert(new PointScreen(e.event.getPoint()));
+				ControllerViewDefault controller = game.getModel().getController().getView().getController();
+				PointCoordinate point = controller.convert(new PointScreen(e.event.getPoint()));
 				Optional<ModelEntityPlace> oPlace = sorted(HLambda.filter(game.getModel().getEntities(), ModelEntityPlace.class),
 					a -> Point2D.distanceSq(point.x, point.y, a.point.x, a.point.y))
 						.findFirst();

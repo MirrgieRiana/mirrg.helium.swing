@@ -13,9 +13,8 @@ import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ToolBackground;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView;
 
-public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODEL extends ModelPhosphorus<THIS, VIEW>, VIEW extends ModelView>
+public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL>, MODEL extends ModelPhosphorus<THIS, ?>>
 	extends GameCarbon<THIS, MODEL>
 {
 
@@ -98,11 +97,6 @@ public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODE
 	}
 
 	//
-
-	public VIEW getView()
-	{
-		return getModel().getController().getView();
-	}
 
 	//TODO mirrg
 	public static <T> Stream<T> of(Consumer<Consumer<T>> ts)

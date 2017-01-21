@@ -9,7 +9,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
 
-public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
+public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?>>
 {
 
 	public double x = 0;
@@ -21,10 +21,10 @@ public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
 		return (ControllerView) super.getController();
 	}
 
-	public abstract class ControllerView extends ControllerCarbon<GamePhosphorus<?, ?, ?>>
+	public abstract class ControllerView extends ControllerCarbon<GamePhosphorus<?, ?>>
 	{
 
-		public ControllerView(GamePhosphorus<?, ?, ?> game)
+		public ControllerView(GamePhosphorus<?, ?> game)
 		{
 			super(game);
 		}

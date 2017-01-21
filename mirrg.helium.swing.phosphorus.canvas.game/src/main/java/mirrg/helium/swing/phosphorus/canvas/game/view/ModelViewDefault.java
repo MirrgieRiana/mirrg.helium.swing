@@ -9,7 +9,7 @@ public class ModelViewDefault extends ModelView
 	public double zoom = 1;
 
 	@Override
-	protected ControllerViewDefault createController(GamePhosphorus<?, ?, ?> game)
+	protected ControllerViewDefault createController(GamePhosphorus<?, ?> game)
 	{
 		return new ControllerViewDefault(game);
 	}
@@ -23,7 +23,7 @@ public class ModelViewDefault extends ModelView
 	public class ControllerViewDefault extends ControllerView
 	{
 
-		public ControllerViewDefault(GamePhosphorus<?, ?, ?> game)
+		public ControllerViewDefault(GamePhosphorus<?, ?> game)
 		{
 			super(game);
 		}

@@ -9,6 +9,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
 public class ModelEntityTile extends ModelEntity<Game2>
 {
@@ -58,17 +59,18 @@ public class ModelEntityTile extends ModelEntity<Game2>
 		{
 			super.render(layer);
 
+			ControllerViewDefault controller = game.getModel().getController().getView().getController();
 			Graphics2D graphics = layer.getImageLayer().getGraphics();
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
-				graphics.fill(game.getView().getController().convert(getOpticalBounds(layer).get()).toShape());
+				graphics.fill(controller.convert(getOpticalBounds(layer).get()).toShape());
 
 			} else if (layer == game.layerMain) {
 				graphics.setColor(Color.white);
-				graphics.setFont(graphics.getFont().deriveFont((float) (20 / game.getView().getController().getZoomX())));
+				graphics.setFont(graphics.getFont().deriveFont((float) (20 / controller.getZoomX())));
 
-				PointScreen point = game.getView().getController().convert(getOpticalBounds(layer).get()).getCenter();
+				PointScreen point = controller.convert(getOpticalBounds(layer).get()).getCenter();
 				String string = "" + (int) (i * 99);
 				Rectangle2D bounds = graphics.getFontMetrics().getStringBounds(string, graphics);
 				graphics.drawString(string,

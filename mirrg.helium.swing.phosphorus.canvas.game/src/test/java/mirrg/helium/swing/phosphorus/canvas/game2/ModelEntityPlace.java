@@ -10,6 +10,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
 public class ModelEntityPlace extends ModelEntity<Game2>
 {
@@ -62,7 +63,8 @@ public class ModelEntityPlace extends ModelEntity<Game2>
 			if (layer == game.layerBack) {
 				graphics.setColor(Color.black);
 
-				RectangleScreen rectangle = game.getView().getController().convert(getOpticalBounds(layer).get());
+				ControllerViewDefault controller = game.getModel().getController().getView().getController();
+				RectangleScreen rectangle = controller.convert(getOpticalBounds(layer).get());
 				graphics.draw(new Ellipse2D.Double(rectangle.x, rectangle.y, rectangle.width, rectangle.height));
 
 			}

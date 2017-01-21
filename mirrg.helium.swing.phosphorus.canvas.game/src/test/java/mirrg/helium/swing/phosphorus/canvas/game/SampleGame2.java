@@ -25,12 +25,12 @@ public class SampleGame2
 	}
 
 	public static void doGame(
-		Function<PhosphorusCanvas, GamePhosphorus<?, ?, ?>> supplierGame,
+		Function<PhosphorusCanvas, GamePhosphorus<?, ?>> supplierGame,
 		int width, int height,
 		double fpsRender, double fpsMove)
 	{
 		FrameCanvas frame = new FrameCanvas(width, height);
-		GamePhosphorus<?, ?, ?> game = supplierGame.apply(frame.canvas);
+		GamePhosphorus<?, ?> game = supplierGame.apply(frame.canvas);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
