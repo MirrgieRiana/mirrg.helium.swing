@@ -30,13 +30,13 @@ public class ModelViewFixed extends ModelViewBase
 		@Override
 		public double getX()
 		{
-			return 0;
+			return getScreenWidth() / 2;
 		}
 
 		@Override
 		public double getY()
 		{
-			return 0;
+			return getScreenHeight() / 2;
 		}
 
 		@Override
