@@ -10,7 +10,7 @@ public class ModelViewSkewed extends ModelView
 	public double zoomY = 1;
 
 	@Override
-	protected ControllerViewSkewed createController(GamePhosphorus<?, ?> game)
+	protected ControllerViewSkewed createController(GamePhosphorus<?, ?, ?> game)
 	{
 		return new ControllerViewSkewed(game);
 	}
@@ -24,7 +24,7 @@ public class ModelViewSkewed extends ModelView
 	public class ControllerViewSkewed extends ControllerView
 	{
 
-		public ControllerViewSkewed(GamePhosphorus<?, ?> game)
+		public ControllerViewSkewed(GamePhosphorus<?, ?, ?> game)
 		{
 			super(game);
 		}

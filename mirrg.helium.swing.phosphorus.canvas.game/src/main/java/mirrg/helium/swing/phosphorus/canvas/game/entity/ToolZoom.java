@@ -4,17 +4,16 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView.ControllerView;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewSkewed.ControllerViewSkewed;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault.ControllerViewDefault;
 
-public class ToolZoom extends Entity<GamePhosphorus<?, ?>>
+public class ToolZoom extends Entity<GamePhosphorus<?, ?, ?>>
 {
 
 	public double deltaZoom = 1.1;
 	private PointScreen point;
 
-	public ToolZoom(GamePhosphorus<?, ?> game)
+	public ToolZoom(GamePhosphorus<?, ?, ?> game)
 	{
 		super(game);
 
@@ -32,30 +31,29 @@ public class ToolZoom extends Entity<GamePhosphorus<?, ?>>
 
 	public void doZoom(int scrollAmount)
 	{
-		ControllerView controller = game.getModel().getController().getView().getController();
 		double rate = Math.pow(deltaZoom, scrollAmount);
-		double x = controller.getX();
-		double y = controller.getY();
+		double x = game.getView().getController().getX();
+		double y = game.getView().getController().getY();
 
-		x += (point.x - game.canvas.getWidth() / 2) * controller.getZoomX();
-		y += (point.y - game.canvas.getHeight() / 2) * controller.getZoomY();
+		x += (point.x - game.canvas.getWidth() / 2) * game.getView().getController().getZoomX();
+		y += (point.y - game.canvas.getHeight() / 2) * game.getView().getController().getZoomY();
 
-		if (controller instanceof ControllerViewDefault) {
-			ControllerViewDefault view = (ControllerViewDefault) controller;
+		if (game.getView().getController() instanceof ControllerViewDefault) {
+			ControllerViewDefault view = (ControllerViewDefault) game.getView().getController();
 
 			view.setZoom(view.getZoom() * rate);
-		} else if (controller instanceof ControllerViewSkewed) {
-			ControllerViewSkewed view = (ControllerViewSkewed) controller;
+		} else if (game.getView().getController() instanceof ControllerViewSkewed) {
+			ControllerViewSkewed view = (ControllerViewSkewed) game.getView().getController();
 
 			view.setZoomX(view.getZoomX() * rate);
 			view.setZoomY(view.getZoomY() * rate);
 		}
 
-		x -= (point.x - game.canvas.getWidth() / 2) * controller.getZoomX();
-		y -= (point.y - game.canvas.getHeight() / 2) * controller.getZoomY();
+		x -= (point.x - game.canvas.getWidth() / 2) * game.getView().getController().getZoomX();
+		y -= (point.y - game.canvas.getHeight() / 2) * game.getView().getController().getZoomY();
 
-		controller.setX(x);
-		controller.setY(y);
+		game.getView().getController().setX(x);
+		game.getView().getController().setY(y);
 
 	}
 

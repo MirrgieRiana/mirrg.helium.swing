@@ -8,14 +8,13 @@ import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView.ControllerView;
 
-public class ToolBackground extends Entity<GamePhosphorus<?, ?>>
+public class ToolBackground extends Entity<GamePhosphorus<?, ?, ?>>
 {
 
 	public Color color = Color.white;
 
-	public ToolBackground(GamePhosphorus<?, ?> game)
+	public ToolBackground(GamePhosphorus<?, ?, ?> game)
 	{
 		super(game);
 	}
@@ -41,10 +40,7 @@ public class ToolBackground extends Entity<GamePhosphorus<?, ?>>
 	@Override
 	public Optional<RectangleCoordinate> getOpticalBounds(Layer layer)
 	{
-		if (layer == game.layerBack) {
-			ControllerView controller = game.getModel().getController().getView().getController();
-			return Optional.of(controller.getCoordinateRectangle());
-		}
+		if (layer == game.layerBack) return Optional.of(game.getView().getController().getCoordinateRectangle());
 		return super.getOpticalBounds(layer);
 	}
 

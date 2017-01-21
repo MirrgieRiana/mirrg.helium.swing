@@ -9,8 +9,9 @@ import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ToolScroll;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ToolZoom;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault;
 
-public class Game2 extends GamePhosphorus<Game2, ModelGame2>
+public class Game2 extends GamePhosphorus<Game2, ModelGame2, ModelViewDefault>
 {
 
 	public final Layer layerMain;

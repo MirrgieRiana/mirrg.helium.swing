@@ -4,14 +4,13 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView.ControllerView;
 
-public class ToolScroll extends Entity<GamePhosphorus<?, ?>>
+public class ToolScroll extends Entity<GamePhosphorus<?, ?, ?>>
 {
 
 	private PointScreen point;
 
-	public ToolScroll(GamePhosphorus<?, ?> game, int button)
+	public ToolScroll(GamePhosphorus<?, ?, ?> game, int button)
 	{
 		super(game);
 
@@ -27,9 +26,8 @@ public class ToolScroll extends Entity<GamePhosphorus<?, ?>>
 		});
 		registerEvent(EventPhosphorusCanvas.EventMouseMotion.Dragged.class, e -> {
 			if (point != null) {
-				ControllerView controller = game.getModel().getController().getView().getController();
-				controller.setX(controller.getX() - controller.getZoomX() * (e.event.getPoint().x - point.x));
-				controller.setY(controller.getY() - controller.getZoomY() * (e.event.getPoint().y - point.y));
+				game.getView().getController().setX(game.getView().getController().getX() - game.getView().getController().getZoomX() * (e.event.getPoint().x - point.x));
+				game.getView().getController().setY(game.getView().getController().getY() - game.getView().getController().getZoomY() * (e.event.getPoint().y - point.y));
 				point = new PointScreen(e.event.getPoint());
 			}
 		});

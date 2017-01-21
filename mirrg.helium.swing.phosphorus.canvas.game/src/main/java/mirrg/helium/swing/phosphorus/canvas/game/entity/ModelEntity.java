@@ -10,7 +10,7 @@ import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 
-public class ModelEntity<G extends GamePhosphorus<?, ?>> extends ModelCarbon<G>
+public class ModelEntity<G extends GamePhosphorus<?, ?, ?>> extends ModelCarbon<G>
 {
 
 	@Override
@@ -19,7 +19,7 @@ public class ModelEntity<G extends GamePhosphorus<?, ?>> extends ModelCarbon<G>
 		return (Entity<G>) super.getController();
 	}
 
-	public static class Entity<G extends GamePhosphorus<?, ?>> extends ControllerCarbon<G>
+	public static class Entity<G extends GamePhosphorus<?, ?, ?>> extends ControllerCarbon<G>
 	{
 
 		public Entity(G game)
@@ -58,7 +58,7 @@ public class ModelEntity<G extends GamePhosphorus<?, ?>> extends ModelCarbon<G>
 			Optional<RectangleCoordinate> oRectangle = getOpticalBounds(layer);
 			if (oRectangle.isPresent()) {
 				RectangleCoordinate rectangle = oRectangle.get();
-				if (game.getModel().getController().getView().getController().getCoordinateRectangle().contains(rectangle)) {
+				if (game.getView().getController().getCoordinateRectangle().contains(rectangle)) {
 					layer.dirty();
 				}
 			}
