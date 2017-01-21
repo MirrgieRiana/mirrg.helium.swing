@@ -13,9 +13,9 @@ import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ToolBackground;
 import mirrg.helium.swing.phosphorus.canvas.game.render.Layer;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewBase;
 
-public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODEL extends ModelPhosphorus<THIS, VIEW>, VIEW extends ModelView>
+public class GamePhosphorus<THIS extends GamePhosphorus<THIS, MODEL, VIEW>, MODEL extends ModelPhosphorus<THIS, VIEW>, VIEW extends ModelViewBase>
 	extends GameCarbon<THIS, MODEL>
 {
 

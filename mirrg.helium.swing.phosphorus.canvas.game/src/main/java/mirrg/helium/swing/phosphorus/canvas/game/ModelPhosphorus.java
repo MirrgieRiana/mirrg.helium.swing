@@ -4,9 +4,9 @@ import java.util.function.Consumer;
 
 import mirrg.helium.game.carbon.base.ControllerCarbon;
 import mirrg.helium.game.carbon.base.ModelCarbon;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelView;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewBase;
 
-public class ModelPhosphorus<G extends GamePhosphorus<?, ?, ?>, V extends ModelView> extends ModelCarbon<G>
+public class ModelPhosphorus<G extends GamePhosphorus<?, ?, ?>, V extends ModelViewBase> extends ModelCarbon<G>
 {
 
 	private V view;

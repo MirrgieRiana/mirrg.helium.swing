@@ -4,13 +4,14 @@ import mirrg.helium.swing.phosphorus.canvas.EventPhosphorusCanvas;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity.Entity;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewXYBase;
 
 public class ToolScroll extends Entity<GamePhosphorus<?, ?, ?>>
 {
 
 	private PointScreen point;
 
-	public ToolScroll(GamePhosphorus<?, ?, ?> game, int button)
+	public ToolScroll(GamePhosphorus<?, ?, ? extends ModelViewXYBase> game, int button)
 	{
 		super(game);
 

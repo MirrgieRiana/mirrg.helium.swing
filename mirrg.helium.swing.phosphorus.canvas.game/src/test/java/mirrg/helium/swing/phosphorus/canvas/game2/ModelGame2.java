@@ -7,15 +7,15 @@ import java.util.stream.Stream;
 import mirrg.helium.game.carbon.base.ModelCarbon;
 import mirrg.helium.swing.phosphorus.canvas.game.ModelPhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.entity.ModelEntity;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewXYZoom;
 
-public class ModelGame2 extends ModelPhosphorus<Game2, ModelViewDefault>
+public class ModelGame2 extends ModelPhosphorus<Game2, ModelViewXYZoom>
 {
 
 	private ArrayList<ModelEntity<? super Game2>> entities = new ArrayList<>();
 	public ModelEntityTile[][] tiles = new ModelEntityTile[10][10];
 
-	public ModelGame2(ModelViewDefault view)
+	public ModelGame2(ModelViewXYZoom view)
 	{
 		super(view);
 	}

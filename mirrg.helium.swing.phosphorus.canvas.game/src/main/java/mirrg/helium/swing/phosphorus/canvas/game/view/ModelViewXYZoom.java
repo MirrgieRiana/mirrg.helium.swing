@@ -3,27 +3,27 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 
-public class ModelViewDefault extends ModelView
+public class ModelViewXYZoom extends ModelViewXYBase
 {
 
 	public double zoom = 1;
 
 	@Override
-	protected ControllerViewDefault createController(GamePhosphorus<?, ?, ?> game)
+	public ControllerViewXYZoom getController()
 	{
-		return new ControllerViewDefault(game);
+		return (ControllerViewXYZoom) super.getController();
 	}
 
 	@Override
-	public ControllerViewDefault getController()
+	protected ControllerViewXYZoom createController(GamePhosphorus<?, ?, ?> game)
 	{
-		return (ControllerViewDefault) super.getController();
+		return new ControllerViewXYZoom(game);
 	}
 
-	public class ControllerViewDefault extends ControllerView
+	public class ControllerViewXYZoom extends ControllerViewXYBase
 	{
 
-		public ControllerViewDefault(GamePhosphorus<?, ?, ?> game)
+		public ControllerViewXYZoom(GamePhosphorus<?, ?, ?> game)
 		{
 			super(game);
 		}
@@ -48,7 +48,7 @@ public class ModelViewDefault extends ModelView
 		public void setZoom(double zoom)
 		{
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
-			ModelViewDefault.this.zoom = zoom;
+			ModelViewXYZoom.this.zoom = zoom;
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 

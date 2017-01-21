@@ -3,28 +3,28 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 
-public class ModelViewSkewed extends ModelView
+public class ModelViewXYZoomXY extends ModelViewXYBase
 {
 
 	public double zoomX = 1;
 	public double zoomY = 1;
 
 	@Override
-	protected ControllerViewSkewed createController(GamePhosphorus<?, ?, ?> game)
+	public ControllerViewXYZoomXY getController()
 	{
-		return new ControllerViewSkewed(game);
+		return (ControllerViewXYZoomXY) super.getController();
 	}
 
 	@Override
-	public ControllerViewSkewed getController()
+	protected ControllerViewXYZoomXY createController(GamePhosphorus<?, ?, ?> game)
 	{
-		return (ControllerViewSkewed) super.getController();
+		return new ControllerViewXYZoomXY(game);
 	}
 
-	public class ControllerViewSkewed extends ControllerView
+	public class ControllerViewXYZoomXY extends ControllerViewXYBase
 	{
 
-		public ControllerViewSkewed(GamePhosphorus<?, ?, ?> game)
+		public ControllerViewXYZoomXY(GamePhosphorus<?, ?, ?> game)
 		{
 			super(game);
 		}
@@ -44,14 +44,14 @@ public class ModelViewSkewed extends ModelView
 		public void setZoomX(double zoomX)
 		{
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
-			ModelViewSkewed.this.zoomX = zoomX;
+			ModelViewXYZoomXY.this.zoomX = zoomX;
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 
 		public void setZoomY(double zoomY)
 		{
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
-			ModelViewSkewed.this.zoomY = zoomY;
+			ModelViewXYZoomXY.this.zoomY = zoomY;
 			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
 		}
 

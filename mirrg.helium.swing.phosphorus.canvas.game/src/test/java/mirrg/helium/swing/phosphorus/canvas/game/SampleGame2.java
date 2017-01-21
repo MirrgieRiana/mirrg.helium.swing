@@ -5,7 +5,7 @@ import java.util.function.Function;
 import javax.swing.WindowConstants;
 
 import mirrg.helium.swing.phosphorus.canvas.PhosphorusCanvas;
-import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewDefault;
+import mirrg.helium.swing.phosphorus.canvas.game.view.ModelViewXYZoom;
 import mirrg.helium.swing.phosphorus.canvas.game2.Game2;
 import mirrg.helium.swing.phosphorus.canvas.game2.ModelGame2;
 import mirrg.helium.swing.phosphorus.canvas.util.FrameCanvas;
@@ -18,7 +18,7 @@ public class SampleGame2
 	{
 		doGame(c -> {
 			Game2 game = new Game2(c);
-			game.setModel(new ModelGame2(new ModelViewDefault()));
+			game.setModel(new ModelGame2(new ModelViewXYZoom()));
 			game.getModel().getController().initTiles();
 			return game;
 		}, 600, 600, 60, 60);

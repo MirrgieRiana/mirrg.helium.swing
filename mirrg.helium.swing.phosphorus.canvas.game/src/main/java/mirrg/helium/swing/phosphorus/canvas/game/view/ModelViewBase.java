@@ -2,29 +2,25 @@ package mirrg.helium.swing.phosphorus.canvas.game.view;
 
 import mirrg.helium.game.carbon.base.ControllerCarbon;
 import mirrg.helium.game.carbon.base.ModelCarbon;
-import mirrg.helium.swing.phosphorus.canvas.game.EventGamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.GamePhosphorus;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.PointScreen;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleCoordinate;
 import mirrg.helium.swing.phosphorus.canvas.game.render.RectangleScreen;
 
-public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
+public abstract class ModelViewBase extends ModelCarbon<GamePhosphorus<?, ?, ?>>
 {
 
-	public double x = 0;
-	public double y = 0;
-
 	@Override
-	public ControllerView getController()
+	public ControllerViewBase getController()
 	{
-		return (ControllerView) super.getController();
+		return (ControllerViewBase) super.getController();
 	}
 
-	public abstract class ControllerView extends ControllerCarbon<GamePhosphorus<?, ?, ?>>
+	public abstract class ControllerViewBase extends ControllerCarbon<GamePhosphorus<?, ?, ?>>
 	{
 
-		public ControllerView(GamePhosphorus<?, ?, ?> game)
+		public ControllerViewBase(GamePhosphorus<?, ?, ?> game)
 		{
 			super(game);
 		}
@@ -41,29 +37,9 @@ public abstract class ModelView extends ModelCarbon<GamePhosphorus<?, ?, ?>>
 			return game.canvas.getHeight();
 		}
 
-		public double getX()
-		{
-			return x;
-		}
+		public abstract double getX();
 
-		public double getY()
-		{
-			return y;
-		}
-
-		public void setX(double x)
-		{
-			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
-			ModelView.this.x = x;
-			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
-		}
-
-		public void setY(double y)
-		{
-			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Pre());
-			ModelView.this.y = y;
-			game.event().post(new EventGamePhosphorus.ChangeViewStatus.Post());
-		}
+		public abstract double getY();
 
 		public abstract double getZoomX();
 
